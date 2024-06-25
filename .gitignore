@@ -1,0 +1,6 @@
+.env
+.nvim*
+build
+st.sh
+__pycache__
+boner

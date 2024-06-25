@@ -1,0 +1,568 @@
+{
+    LEVEL_NEW, 
+    2, 4,
+    11, 13,
+        {
+            {
+               {
+                    {LEVEL_METADATA, 0, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 2, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 3, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 4, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 6, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 0, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 0, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 2, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 3, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 4, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 6, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 1, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 1, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 2, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 3, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 4, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 6, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 2, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 2, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 3, 2, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 1, 0, 96, 480, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 2, 0, 128, 480, ENTITY_TILESET_A,  1, 0 },
+               },
+               {
+                    {LEVEL_METADATA, 1, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 2, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 3, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 4, 3, 4, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 3, 0, 672, 448, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 4, 0, 672, 480, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 5, 0, 704, 448, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 6, 0, 704, 480, ENTITY_TILESET_A,  1, 0 },
+               },
+               {
+                    {LEVEL_METADATA, 5, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 6, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 3, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 3, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 4, 2, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 7, 0, 96, 512, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 8, 0, 128, 512, ENTITY_TILESET_A,  1, 0 },
+               },
+               {
+                    {LEVEL_METADATA, 1, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 2, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 3, 4, 2, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 9, 0, 512, 608, ENTITY_TILESET_A,  1, 1 },
+                    {LEVEL_ENTITY, 10, 0, 544, 608, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 4, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 4, 3, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 11, 0, 832, 608, ENTITY_TILESET_A,  1, 1 },
+                    {LEVEL_ENTITY, 12, 0, 864, 608, ENTITY_TILESET_A,  1, 1 },
+                    {LEVEL_ENTITY, 13, 0, 896, 608, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 6, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 4, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 4, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 5, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 5, 1, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 14, 0, 288, 736, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 2, 5, 1, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 15, 0, 320, 736, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 3, 5, 2, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 16, 0, 512, 640, ENTITY_TILESET_A,  1, 1 },
+                    {LEVEL_ENTITY, 17, 0, 544, 640, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 4, 5, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 5, 3, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 18, 0, 832, 640, ENTITY_TILESET_A,  1, 1 },
+                    {LEVEL_ENTITY, 19, 0, 864, 640, ENTITY_TILESET_A,  1, 1 },
+                    {LEVEL_ENTITY, 20, 0, 896, 640, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 6, 5, 4, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 21, 0, 1024, 640, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 22, 0, 1024, 672, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 23, 0, 1056, 640, ENTITY_TILESET_A,  1, 0 },
+                    {LEVEL_ENTITY, 24, 0, 1056, 672, ENTITY_TILESET_A,  1, 0 },
+               },
+               {
+                    {LEVEL_METADATA, 7, 5, 5, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 25, 0, 1120, 736, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 26, 0, 1152, 736, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 27, 0, 1184, 736, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 28, 0, 1216, 736, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 29, 0, 1248, 736, ENTITY_TILESET_A,  2, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 8, 5, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 5, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 5, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 5, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 5, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 6, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 6, 1, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 30, 0, 288, 768, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 2, 6, 1, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 31, 0, 320, 768, ENTITY_TILESET_A,  1, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 3, 6, 3, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 32, 0, 608, 800, ENTITY_TILESET_A,  6, 3 },
+                    {LEVEL_ENTITY, 33, 0, 608, 832, ENTITY_TILESET_A,  6, 4 },
+                    {LEVEL_ENTITY, 34, 0, 608, 864, ENTITY_TILESET_A,  6, 5 },
+               },
+               {
+                    {LEVEL_METADATA, 4, 6, 3, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 35, 0, 736, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 36, 0, 768, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 37, 0, 768, 864, ENTITY_TILESET_A,  2, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 5, 6, 11, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 38, 0, 800, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 39, 0, 800, 864, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 40, 0, 832, 800, ENTITY_TILESET_A,  4, 8 },
+                    {LEVEL_ENTITY, 41, 0, 832, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 42, 0, 832, 864, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 43, 0, 864, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 44, 0, 864, 864, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 45, 0, 896, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 46, 0, 896, 864, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 47, 0, 928, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 48, 0, 928, 864, ENTITY_TILESET_A,  2, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 6, 6, 3, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 49, 0, 960, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 50, 0, 960, 864, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 51, 0, 992, 832, ENTITY_TILESET_A,  2, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 7, 6, 9, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 52, 0, 1120, 768, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 53, 0, 1152, 768, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 54, 0, 1152, 800, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 55, 0, 1184, 768, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 56, 0, 1184, 800, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 57, 0, 1184, 832, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 58, 0, 1216, 768, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 59, 0, 1216, 800, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 60, 0, 1248, 768, ENTITY_TILESET_A,  2, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 8, 6, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 6, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 6, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 6, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 6, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 7, 3, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 61, 0, 288, 928, ENTITY_TILESET_A,  2, 4 },
+                    {LEVEL_ENTITY, 62, 0, 288, 960, ENTITY_TILESET_A,  2, 5 },
+                    {LEVEL_ENTITY, 63, 0, 288, 992, ENTITY_TILESET_A,  2, 6 },
+               },
+               {
+                    {LEVEL_METADATA, 2, 7, 7, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 64, 0, 320, 928, ENTITY_TILESET_A,  3, 4 },
+                    {LEVEL_ENTITY, 65, 0, 320, 960, ENTITY_TILESET_A,  3, 5 },
+                    {LEVEL_ENTITY, 66, 0, 320, 992, ENTITY_TILESET_A,  3, 6 },
+                    {LEVEL_ENTITY, 67, 0, 352, 928, ENTITY_TILESET_A,  4, 4 },
+                    {LEVEL_ENTITY, 68, 0, 352, 960, ENTITY_TILESET_A,  4, 5 },
+                    {LEVEL_ENTITY, 69, 0, 352, 992, ENTITY_TILESET_A,  4, 6 },
+                    {LEVEL_ENTITY, 70, 0, 448, 992, ENTITY_TILESET_A,  0, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 3, 7, 9, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 71, 0, 480, 992, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 72, 0, 576, 896, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 73, 0, 576, 928, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 74, 0, 576, 960, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 75, 0, 576, 992, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 76, 0, 608, 896, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 77, 0, 608, 928, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 78, 0, 608, 960, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 79, 0, 608, 992, ENTITY_TILESET_A,  0, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 4, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 7, 9, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 80, 0, 800, 896, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 81, 0, 832, 896, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 82, 0, 832, 928, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 83, 0, 864, 896, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 84, 0, 864, 928, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 85, 0, 864, 960, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 86, 0, 896, 896, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 87, 0, 896, 928, ENTITY_TILESET_A,  2, 1 },
+                    {LEVEL_ENTITY, 88, 0, 928, 896, ENTITY_TILESET_A,  2, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 6, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 7, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 7, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 8, 8, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 89, 0, 192, 1088, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 90, 0, 224, 1088, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 91, 0, 224, 1120, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 92, 0, 256, 1088, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 93, 0, 256, 1120, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 94, 0, 288, 1024, ENTITY_TILESET_A,  2, 7 },
+                    {LEVEL_ENTITY, 95, 0, 288, 1088, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 96, 0, 288, 1120, ENTITY_TILESET_A,  0, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 2, 8, 9, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 97, 0, 320, 1024, ENTITY_TILESET_A,  3, 7 },
+                    {LEVEL_ENTITY, 98, 0, 320, 1056, ENTITY_TILESET_A,  3, 8 },
+                    {LEVEL_ENTITY, 99, 0, 320, 1088, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 100, 0, 320, 1120, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 101, 0, 352, 1024, ENTITY_TILESET_A,  4, 7 },
+                    {LEVEL_ENTITY, 102, 0, 352, 1088, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 103, 0, 448, 1024, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 104, 0, 448, 1056, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 105, 0, 448, 1088, ENTITY_TILESET_A,  0, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 3, 8, 3, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 106, 0, 480, 1024, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 107, 0, 480, 1056, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 108, 0, 480, 1088, ENTITY_TILESET_A,  0, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 4, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 6, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 8, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 8, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 9, 2, 0, 0, 0, 0 },
+                    {LEVEL_ENTITY, 109, 0, 256, 1152, ENTITY_TILESET_A,  0, 1 },
+                    {LEVEL_ENTITY, 110, 0, 288, 1152, ENTITY_TILESET_A,  0, 1 },
+               },
+               {
+                    {LEVEL_METADATA, 2, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 3, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 4, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 6, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 9, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 9, 0, 0, 0, 0, 0 }
+               },
+            },
+            {
+               {
+                    {LEVEL_METADATA, 0, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 1, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 2, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 3, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 4, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 5, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 6, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 7, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 8, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 9, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 10, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 11, 10, 0, 0, 0, 0, 0 }
+               },
+               {
+                    {LEVEL_METADATA, 12, 10, 0, 0, 0, 0, 0 }
+               },
+            },
+        }
+}
