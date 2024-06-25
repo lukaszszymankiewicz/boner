@@ -14,6 +14,6 @@ gfx from:
  - https://brackeysgames.itch.io/brackeys-platformer-bundle
 
 level made using:
- - htps://riskylab.com/tilemap/
+ - https://riskylab.com/tilemap/
 
 ![Gameplay](screenshot.gif)
