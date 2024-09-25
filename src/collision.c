@@ -104,7 +104,6 @@ collision_t COL_rect_rect(
     rectangle_t a,
     rectangle_t b
 ) {
-
     // only collision with stable colliders are supported
     assert((b.vx == 0) && (b.vy == 0));
 

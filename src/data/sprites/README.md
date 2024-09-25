@@ -1,3 +1,3 @@
-to ensure that PNG file has appriopriate number of color channels use this
-command:
-convert <filename>.png png32:<filename>.png
+to ensure that PNG file has correct number of color channels use:
+
+`convert <filename>.png png32:<filename>.png`

@@ -1,22 +1,23 @@
-/* Main game file, here the start, end and the main loop of the game is
- * controlled */
-
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "data/library.h"
+#include "obscura/gfx.h"
+#include "obscura/canvas.h"
+#include "obscura/window.h"
 
-#include "modules.h"
 #include "controller.h"
+#include "data.h"
 #include "game.h"
-#include "gfx.h"
 #include "global.h"
 #include "level_manager.h"
-#include "scene.h"
+#include "modules.h"
+#include "resources.h"
 #include "system_manager.h"
+#include "symbols.h"
 #include "timer.h"
-#include "window.h"
+
+#define FIRST_BUFFER 1
 
 game_t *game      = NULL;
 
@@ -26,7 +27,6 @@ void GAME_handle_window_events(
         if (game->event.type == SDL_QUIT) { 
             game->loop = false; 
         } else if (game->event.type == SDL_WINDOWEVENT && game->event.window.event == SDL_WINDOWEVENT_RESIZED) {
-            // TODO
         }
     }
 }
@@ -45,24 +45,21 @@ void GAME_start_time(
 }
 
 // prepare all screen layers and framebuffers
-void GAME_fill_scene(
+void GAME_fill_canvas(
 ) {
-    SCENE_add_defalt_buffer();
-
-    SCENE_add_layer(LAYER_BACKTILE, "Backtiles");
-    SCENE_add_layer(LAYER_TILE,     "Tiles");
-    SCENE_add_layer(LAYER_SPRITE,   "Sprites");
-    SCENE_add_layer(SCALED_IMAGE,   "Pixelated Image");
+    CANVAS_add_defalt_buffer(canvas, window->width, window->height);
     
-    SCENE_add_buffer(FIRST_BUFFER, SCREEN_WIDTH, SCREEN_HEIGHT);
+    CANVAS_add_layer(canvas, LAYER_BACKTILE);
+    CANVAS_add_layer(canvas, LAYER_TILE);
+    CANVAS_add_layer(canvas, LAYER_SPRITE);
+    CANVAS_add_layer(canvas, SCALED_IMAGE);
+    
+    CANVAS_add_buffer(canvas, window, FIRST_BUFFER, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void GAME_update_time(
 ) {
-    // update ticks
     game->frame_ticks = TIMER_get_ticks(cap_timer);
-    
-    // update frame
     game->frame++;
 
     // delay frame if needed
@@ -71,7 +68,6 @@ void GAME_update_time(
     }
 }
 
-// check if game should run or it ended
 bool GAME_shold_run(
 ) {
     return (game->loop) && (game->frame != -1);
@@ -79,32 +75,31 @@ bool GAME_shold_run(
 
 void GAME_render_scaled_image(
 ) {
-    SCENE_activate_buffer(FIRST_BUFFER);
-    SCENE_activate_layer(SCALED_IMAGE);
-    SCENE_draw_scaled_buffer();
+    CANVAS_activate_buffer(canvas, FIRST_BUFFER);
+    CANVAS_activate_layer(canvas, SCALED_IMAGE);
+    CANVAS_draw_scaled_buffer(canvas);
 
-    SCENE_activate_buffer(DEFAULT_FRAMEBUFFER);
-    SCENE_activate_layer(SCALED_IMAGE);
-    SCENE_render_current_layer();
+    CANVAS_activate_buffer(canvas, DEFAULT_FRAMEBUFFER);
+    CANVAS_activate_layer(canvas, SCALED_IMAGE);
+    CANVAS_render_current_layer(canvas);
 }
 
 // whole rendering pipeline
 void GAME_render(
 ) {
-    SCENE_activate_layer(LAYER_BACKTILE);
-    SCENE_render_current_layer();
+    CANVAS_activate_layer(canvas, LAYER_BACKTILE);
+    CANVAS_render_current_layer(canvas);
 
-    SCENE_activate_layer(LAYER_TILE);
-    SCENE_render_current_layer();
+    CANVAS_activate_layer(canvas, LAYER_TILE);
+    CANVAS_render_current_layer(canvas);
 
-    SCENE_activate_layer(LAYER_SPRITE);
-    SCENE_render_current_layer();
+    CANVAS_activate_layer(canvas, LAYER_SPRITE);
+    CANVAS_render_current_layer(canvas);
 
     GAME_render_scaled_image();
-    WINDOW_update();
+    WINDOW_update(window);
 }
 
-// main game loop
 void GAME_loop(
 ) {
     if (!game) {
@@ -113,42 +108,45 @@ void GAME_loop(
 
     while(GAME_shold_run()) {
         GAME_start_time();
-        SCENE_clear();
+        CANVAS_clear(canvas);
         CON_update();
-        SYSMAN_run_all();       
+        SYSMAN_run();       
         GAME_render();
         GAME_update_time();
         GAME_handle_window_events();
     }
 }
 
-// orient sectors accoringg to main focus point
-void GAME_orient_level(
-) {
-    int sec_x = level_manager->focus_x;
-    int sec_y = level_manager->focus_y;
-
-    ENTMAN_orient_sectors(sec_x, sec_y);
-}
+// TODO: rethink is it a really good place for this one
+void GAME_set_level(
+) { 
+    level_manager->level = resources[LEVEL_NEW];
+};
 
 void GAME_new(
 ) {
     GAME_init();
     MODULES_init();
+    
+    // TODO: this should be invoked from the Makefile level, only if needed!
+    // BPT_init();
+    //
 
+    RES_read_resources(datas, 5);
+
+    GAME_set_level();
+
+    // TODO: this should be invoked by one OBSCURA_init() function (both 
+    // LIB_create_shaders_library and GFX_init)
     GFX_init();
-    LIB_init();
+    LIB_create_shaders_library();
 
-    LVLMAN_set_level(LEVEL_NEW);
-    GAME_orient_level();
-    SYSMAN_run_init();
-
-    GAME_fill_scene();
+    GAME_fill_canvas();
 }
 
 void GAME_close(
 ) {
-    LIB_free_all();
+    LIB_free_shaders_library();
     MODULES_free();
     free(game);
     SDL_Quit();
