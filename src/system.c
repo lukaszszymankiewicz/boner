@@ -28,6 +28,7 @@
 const static int NEGATIVE  = -1;
 const static int POSITIVE  = 1;
 
+// TODOL those values should be propably just another componnent
 const static int JUMP_H      = SUBPIX * 32 * 5;
 const static int PREJUMP_LEN = 3;
 const static int JUMP_T_HALF = 15;
