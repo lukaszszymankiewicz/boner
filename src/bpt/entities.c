@@ -5,7 +5,7 @@
 
 blueprint_t entity_blueprint_hero = {
             { 0                                  ,          ID, 0, 0,                0 },
-            { 1                                  , LEVEL_WIDTH, 0, 0,              235 },
+            { 1                                  , LEVEL_WIDTH, 0, 0,              239 },
             { 2                                  ,         MAP, 0, 0,               40 },
             { 3                                  ,         MAP, 0, 0,              100 },
             { 4                                  ,         MAP, 0, 0,              500 },
@@ -145,7 +145,7 @@ blueprint_t entity_blueprint_hero = {
             { 503, MAP, 0, FALLING_DOWN, 810  }, 
               { 510, METADATA, 4, PHASE_INIT,      520  }, // n + which phase
               { 511, METADATA, 3, PHASE_PRE,       530  }, // n + which phase
-              { 512, METADATA, 2, PHASE_UPDATE,    540  }, // n + which phase
+              { 512, METADATA, 3, PHASE_UPDATE,    540  }, // n + which phase
               { 513, METADATA, 4, PHASE_CONTROL,   550  }, // n + which phase
               { 514, METADATA, 1, PHASE_COLLISION, 560  }, // n + which phase
               { 515, METADATA, 4, PHASE_RESOLVE,   570  }, // n + which phase
@@ -159,6 +159,7 @@ blueprint_t entity_blueprint_hero = {
                 { 532, BEHAVIOUR, PHASE_PRE, 2, BEHAVIOUR_CATCH_POS       },
                 { 540, BEHAVIOUR, PHASE_UPDATE, 0, BEHAVIOUR_ADD_GRAVITY        },
                 { 541, BEHAVIOUR, PHASE_UPDATE, 1, BEHAVIOUR_HORIZONTAL_FRICION },
+                { 542, BEHAVIOUR, PHASE_UPDATE, 2, BEHAVIOUR_SET_FRAME       },
                 { 550, BEHAVIOUR, PHASE_CONTROL, 0, BEHAVIOUR_CONTROL_JUMP    },
                 { 551, BEHAVIOUR, PHASE_CONTROL, 1, BEHAVIOUR_CONTROL_LEFT    },
                 { 552, BEHAVIOUR, PHASE_CONTROL, 2, BEHAVIOUR_CONTROL_RIGHT   },
@@ -171,7 +172,7 @@ blueprint_t entity_blueprint_hero = {
                 { 574, BEHAVIOUR, PHASE_RESOLVE, 4, BEHAVIOUR_UPDATE_SECTOR   },
                 { 580, BEHAVIOUR, PHASE_DRAW, 0, BEHAVIOUR_DRAW_SPRITE   },
               { 611, METADATA, 3, PHASE_PRE,       620  }, // n + which phase
-              { 612, METADATA, 2, PHASE_UPDATE,    630  }, // n + which phase
+              { 612, METADATA, 3, PHASE_UPDATE,    630  }, // n + which phase
               { 613, METADATA, 4, PHASE_CONTROL,   640  }, // n + which phase
               { 614, METADATA, 1, PHASE_COLLISION, 650  }, // n + which phase
               { 615, METADATA, 4, PHASE_RESOLVE,   660  }, // n + which phase
@@ -181,6 +182,7 @@ blueprint_t entity_blueprint_hero = {
                 { 622, BEHAVIOUR, PHASE_PRE, 2, BEHAVIOUR_CATCH_POS       },
                 { 630, BEHAVIOUR, PHASE_UPDATE, 0, BEHAVIOUR_ADD_GRAVITY        },
                 { 631, BEHAVIOUR, PHASE_UPDATE, 1, BEHAVIOUR_HORIZONTAL_FRICION },
+                { 632, BEHAVIOUR, PHASE_UPDATE, 2, BEHAVIOUR_SET_FRAME },
                 { 640, BEHAVIOUR, PHASE_CONTROL, 0, BEHAVIOUR_CONTROL_JUMP    },
                 { 641, BEHAVIOUR, PHASE_CONTROL, 1, BEHAVIOUR_CONTROL_LEFT    },
                 { 642, BEHAVIOUR, PHASE_CONTROL, 2, BEHAVIOUR_CONTROL_RIGHT   },
@@ -192,7 +194,7 @@ blueprint_t entity_blueprint_hero = {
                 { 663, BEHAVIOUR, PHASE_RESOLVE, 3, BEHAVIOUR_UPDATE_SECTOR   },
                 { 670, BEHAVIOUR, PHASE_DRAW, 0, BEHAVIOUR_DRAW_SPRITE   },
               { 711, METADATA, 3, PHASE_PRE,       720  }, // n + which phase
-              { 712, METADATA, 2, PHASE_UPDATE,    730  }, // n + which phase
+              { 712, METADATA, 3, PHASE_UPDATE,    730  }, // n + which phase
               { 713, METADATA, 4, PHASE_CONTROL,   740  }, // n + which phase
               { 714, METADATA, 2, PHASE_COLLISION, 750  }, // n + which phase
               { 715, METADATA, 3, PHASE_RESOLVE,   760  }, // n + which phase
@@ -202,6 +204,7 @@ blueprint_t entity_blueprint_hero = {
                 { 722, BEHAVIOUR, PHASE_PRE, 2, BEHAVIOUR_CATCH_POS       },
                 { 730, BEHAVIOUR, PHASE_UPDATE, 0, BEHAVIOUR_ADD_GRAVITY        },
                 { 731, BEHAVIOUR, PHASE_UPDATE, 1, BEHAVIOUR_HORIZONTAL_FRICION },
+                { 732, BEHAVIOUR, PHASE_UPDATE, 2, BEHAVIOUR_SET_FRAME },
                 { 740, BEHAVIOUR, PHASE_CONTROL, 0, BEHAVIOUR_CONTROL_JUMP    },
                 { 741, BEHAVIOUR, PHASE_CONTROL, 1, BEHAVIOUR_CONTROL_LEFT    },
                 { 742, BEHAVIOUR, PHASE_CONTROL, 2, BEHAVIOUR_CONTROL_RIGHT   },
@@ -214,7 +217,7 @@ blueprint_t entity_blueprint_hero = {
                 { 763, BEHAVIOUR, PHASE_RESOLVE, 3, BEHAVIOUR_UPDATE_SECTOR   },
                 { 770, BEHAVIOUR, PHASE_DRAW, 0, BEHAVIOUR_DRAW_SPRITE   },
               { 811, METADATA, 3, PHASE_PRE,       820  }, // n + which phase
-              { 812, METADATA, 2, PHASE_UPDATE,    830  }, // n + which phase
+              { 812, METADATA, 3, PHASE_UPDATE,    830  }, // n + which phase
               { 813, METADATA, 0, PHASE_CONTROL,   840  }, // n + which phase
               { 814, METADATA, 1, PHASE_COLLISION, 850  }, // n + which phase
               { 815, METADATA, 4, PHASE_RESOLVE,   860  }, // n + which phase
@@ -224,6 +227,7 @@ blueprint_t entity_blueprint_hero = {
                 { 822, BEHAVIOUR, PHASE_PRE, 2, BEHAVIOUR_CATCH_POS       },
                 { 830, BEHAVIOUR, PHASE_UPDATE, 0, BEHAVIOUR_ADD_GRAVITY        },
                 { 831, BEHAVIOUR, PHASE_UPDATE, 1, BEHAVIOUR_HORIZONTAL_FRICION },
+                { 832, BEHAVIOUR, PHASE_UPDATE, 2, BEHAVIOUR_SET_FRAME },
                 { 840, BEHAVIOUR, PHASE_CONTROL, 0, BEHAVIOUR_UPDATE_VELOCITY },// TODO: below add to update phase
                 { 850, BEHAVIOUR, PHASE_COLLISION, 0, BEHAVIOUR_CHECK_COLLISION },
                 { 860, BEHAVIOUR, PHASE_RESOLVE, 0, BEHAVIOUR_UPDATE_POSITION      },
@@ -273,6 +277,11 @@ blueprint_t entity_blueprint_tile = {
 
 void BPT_create_entity_library(
 ) {
-    BPT_serialize(entity_blueprint_hero, "./src/data/entites/hero", 235);
-    BPT_serialize(entity_blueprint_tile, "./src/data/entites/tile", 27);
+    int w;
+
+    w = entity_blueprint_hero[1][4];
+    BPT_serialize(entity_blueprint_hero, "./src/data/entites/hero", w);
+
+    w = entity_blueprint_tile[1][4];
+    BPT_serialize(entity_blueprint_tile, "./src/data/entites/tile", w);
 }

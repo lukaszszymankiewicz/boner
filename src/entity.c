@@ -34,8 +34,8 @@ int ENT_collision_begin_idx(
 }
 
 int ENT_anim(
-    int anim,
-    int bpt
+    int bpt,
+    int anim
 ) {
     entity_t ent = resources[bpt];
 
@@ -63,7 +63,7 @@ int ENT_frame_data(
     int val
 ) {
     entity_t ent        = resources[bpt];
-    int frame_idx       = ENT_anim(state, bpt) + frame;
+    int frame_idx       = ENT_anim(bpt, state) + frame;
     int frame_data_idx  = DATATABLE_get_val(ent, frame_idx, DATA_COL_D);
     
     return DATATABLE_get_val(ent, frame_data_idx+comp, val);
