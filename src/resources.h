@@ -19,5 +19,6 @@ typedef struct data {
 extern void* resources[MAX_RESOURCES];
 
 void RES_read_resources(data_t *datas, int n_data);
+void RES_free_resources(data_t *datas, int n_data);
 
 #endif

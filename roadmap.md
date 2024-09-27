@@ -42,6 +42,7 @@ version 0.0.1
 
 version 0.0.1
  - [x] scale the skeleton entity to better fit the 32x32 tiles
+  - [ ] apprioprietly set the skeleton frames! (gun in sliced now!)
  - [x] animation frame is not correctly set 
  - [x] flipping the frame does not work
  - [ ] remove all TODOs

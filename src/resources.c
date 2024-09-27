@@ -7,7 +7,6 @@
 
 void* resources[MAX_RESOURCES];
 
-// TODO: where is freeing the resources?
 void RES_read_resources(
     data_t *datas,
     int n_data
@@ -25,5 +24,25 @@ void RES_read_resources(
         }
 
         printf("[RESOURCE (%s) read]\n", datas[n].path);
+    }
+};
+
+void RES_free_resources(
+    data_t *datas,
+    int n_data
+) {
+    for (int n=0; n<n_data; n++) {
+        switch (datas[n].type)
+
+        {
+            case DATA_TYPE_TABLE:
+                DATATABLE_free(resources[n]);
+                break;
+            case DATA_TYPE_TEXTURE:
+                TEX_free(resources[n]);
+                break;
+        }
+
+        printf("[RESOURCE (%s) freed]\n", datas[n].path);
     }
 };

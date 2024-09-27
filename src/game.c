@@ -128,10 +128,7 @@ void GAME_new(
     GAME_init();
     MODULES_init();
     
-    // TODO: this should be invoked from the Makefile level, only if needed!
-    // BPT_init();
-    //
-
+    // TODOL this 5 should be reachable somehow
     RES_read_resources(datas, 5);
 
     GAME_set_level();
@@ -146,7 +143,9 @@ void GAME_new(
 
 void GAME_close(
 ) {
+    // TODO: this should be invoked by OBSCURA_free() function
     LIB_free_shaders_library();
+    RES_free_resources(datas, 5);
     MODULES_free();
     free(game);
     SDL_Quit();

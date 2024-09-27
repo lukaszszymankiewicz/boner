@@ -443,7 +443,6 @@ void LVLMAN_debug(
 }
 void LVLMAN_free(
 ) {
-    DATATABLE_free(level_manager->level);
     level_manager->level = NULL;
 
     free(level_manager);
