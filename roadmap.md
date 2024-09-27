@@ -43,7 +43,7 @@ version 0.0.1
 version 0.0.1
  - [ ] scale the skeleton entity to better fit the 32x32 tiles
  - [x] animation frame is not correctly set 
- - [ ] flipping the frame does not work
+ - [x] flipping the frame does not work
  - [ ] remove all TODOs
  - [ ] resources should be freed corectly
  - [ ] strange thrills while jumping high

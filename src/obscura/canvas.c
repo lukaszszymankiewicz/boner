@@ -270,7 +270,7 @@ void CANVAS_put_texture_to_canvas(
         clip_x,     clip_y,
         clip_w,     clip_h,
         tex_w,      tex_h,
-        false,      flip_h
+        flip_w,     flip_h
     );
 
     render_object_t* object = &(canvas->layers[canvas->cur_layer].objs[sprite]);
