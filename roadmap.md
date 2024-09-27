@@ -41,13 +41,16 @@ version 0.0.1
   - [x] test it on better level
 
 version 0.0.1
- - [ ] scale the skeleton entity to better fit the 32x32 tiles
+ - [x] scale the skeleton entity to better fit the 32x32 tiles
  - [x] animation frame is not correctly set 
  - [x] flipping the frame does not work
  - [ ] remove all TODOs
  - [ ] resources should be freed corectly
  - [ ] strange thrills while jumping high
   - [ ] holding jump button allows to jump infinitely
+  - [ ] scale falling down speed to new size of skeleton
+  - [ ] add origin point to animation data - right now it is always the
+    highest-left point of frame but it should be modifiable
  - [ ] behaviours should have its own basic scripting language (rethink it!)
  - [ ] some easy way to record gameplay (and replay it)
 
