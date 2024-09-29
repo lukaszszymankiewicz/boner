@@ -47,12 +47,13 @@ version 0.0.1
  - [x] flipping the frame does not work
  - [ ] remove all TODOs
  - [x] resources should be freed corectly
- - [ ] strange thrills while jumping high
-  - [ ] holding jump button allows to jump infinitely
+ - [x] strange thrills while jumping high
+  - [x] holding jump button allows to jump infinitely
   - [ ] scale falling down speed to new size of skeleton
   - [x] add origin point to animation data - right now it is always the
     highest-left point of frame but it should be modifiable (done by properly
     setting the frame image)
+ - [ ] skeleton does not stop walking after losing all the x-velocity
  - [ ] behaviours should have its own basic scripting language (rethink it!)
  - [ ] some easy way to record gameplay (and replay it)
 

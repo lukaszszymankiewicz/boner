@@ -204,7 +204,7 @@ int ENT_get_collide_fun(
     assert(state == DATATABLE_get_val(ent, idx, DATA_COL_C));
 
     int col_fun_idx = DATATABLE_get_val(ent, idx, DATA_COL_D) + col_body;
-    assert(BEHAVIOUR == DATATABLE_get_val(ent, col_fun_idx, DATA_COL_A));
+    assert(COLLISION == DATATABLE_get_val(ent, col_fun_idx, DATA_COL_A));
     assert(state == DATATABLE_get_val(ent, col_fun_idx, DATA_COL_B));
     assert(col_body == DATATABLE_get_val(ent, col_fun_idx, DATA_COL_C));
 

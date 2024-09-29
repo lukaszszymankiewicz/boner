@@ -28,9 +28,9 @@
 const static int NEGATIVE  = -1;
 const static int POSITIVE  = 1;
 
-// TODOL those values should be propably just another componnent
+// TODO: those values should be propably just another componnent
 const static int JUMP_H      = SUBPIX * 32 * 5;
-const static int PREJUMP_LEN = 3;
+const static int PREJUMP_LEN = 4;
 const static int JUMP_T_HALF = 15;
 
 const static int GRAVITY          = -1 * (2 * JUMP_H) / (JUMP_T_HALF * JUMP_T_HALF);
@@ -418,23 +418,13 @@ void SYSTEM_jump(
     int ent
 ) {
     int button = CON_button_pressed(KEY_PRESSED_SPACE);
-    int state  = LVLMAN_get_component(ent, ENTITY_COMPONENT_STATE);
 
     if (!button) {
         return;
     }
 
-    if (state == JUMPING) {
-        int timer = LVLMAN_get_component(ent, ENTITY_COMPONENT_ANIM_TIMER);
-
-        if (timer <= PREJUMP_LEN) {
-            LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, PRE_JUMP_POWUH);
-        }
-
-    } else {
-        ENT_change_state(ent, JUMPING);
-        LVLMAN_set_component(ent, ENTITY_COMPONENT_Y_VEL, BASE_JUMP_POWUH);
-    }
+    ENT_change_state(ent, PREJUMP);
+    LVLMAN_set_component(ent, ENTITY_COMPONENT_Y_VEL, BASE_JUMP_POWUH);
 }
 
 void SYSTEM_check_if_falling(
@@ -581,12 +571,17 @@ void SYSTEM_anim_frame(
 void SYSTEM_continue_jump(
     int ent
 ) {
+    int frame  = LVLMAN_get_component(ent, ENTITY_COMPONENT_ANIM_FRAME);
     int timer  = LVLMAN_get_component(ent, ENTITY_COMPONENT_ANIM_TIMER);
     int delay  = LVLMAN_get_component(ent, ENTITY_COMPONENT_ANIM_DELAY);
     int button = CON_button_still_pressed(KEY_PRESSED_SPACE);
-    
+
+    int state = LVLMAN_get_component(ent, ENTITY_COMPONENT_STATE);
+
+    assert(state==PREJUMP);
+
     if ((timer < delay) && (button)) {
-        ENT_change_state(ent, JUMPING);
+        LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, PRE_JUMP_POWUH);
     } else {
         ENT_change_state(ent, JUMPING);
     }

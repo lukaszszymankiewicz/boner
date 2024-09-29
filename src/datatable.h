@@ -40,7 +40,11 @@ enum LEVEL_DATA {
     METADATA      = 7,
     ENTITY_DATA   = 8,
     ENTITY_NTH    = 9,
-    BEHAVIOUR     = 10
+    BEHAVIOUR     = 10,
+    COLLISION     = 11,
+    ANIMATION     = 12,
+    FRAME         = 13,
+    DEFAULT       = 14
 };
 
 enum LEVEL_DATA_ENTRIES {
