@@ -350,7 +350,6 @@ void LVLMAN_move_ent_to_sector(
     LVLMAN_set_ent_map_nth(place, n);
     
     // set nth on ent
-    // TODO: move this operation to more readable function
     LVLMAN_set(ent, DATA_COL_D, n);
 
     // lasty update the the sector of entity
