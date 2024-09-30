@@ -12,6 +12,8 @@ typedef struct level_manager {
 
 void LVLMAN_init();
 
+void LVLMAN_set_level(level_t level);
+
 int LVLMAN_width();
 int LVLMAN_size_x();
 int LVLMAN_size_y();

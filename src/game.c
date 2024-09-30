@@ -117,12 +117,6 @@ void GAME_loop(
     }
 }
 
-// TODO: rethink is it a really good place for this one
-void GAME_set_level(
-) { 
-    level_manager->level = resources[LEVEL_NEW];
-};
-
 void GAME_new(
 ) {
     GAME_init();
@@ -130,7 +124,7 @@ void GAME_new(
     
     RES_read_resources(datas);
 
-    GAME_set_level();
+    LVLMAN_set_level(resources[LEVEL_NEW]);
 
     // TODO: this should be invoked by one OBSCURA_init() function (both 
     // LIB_create_shaders_library and GFX_init)

@@ -8,6 +8,12 @@
 #include "level_manager.h"
 #include "symbols.h"
 
+void LVLMAN_set_level(
+    level_t level
+) {
+    level_manager->level = level;
+}
+
 // metadata
 int LVLMAN_id(
 ) {
