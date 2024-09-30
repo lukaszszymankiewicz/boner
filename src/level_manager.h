@@ -3,6 +3,8 @@
 #ifndef LEVEL_MANAGER_H
 #define LEVEL_MANAGER_H
 
+typedef datatable_t* level_t;
+
 typedef struct level_manager {
   level_t  level;
   int      id;

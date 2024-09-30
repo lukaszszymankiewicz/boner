@@ -73,8 +73,4 @@ void DATATABLE_move(datatable_t* table, int from, int to);
 
 datatable_t* DATATABLE_deserialize(char *path, int width, int idx);
 
-// TODO: this should be moved to appriopirate modules
-typedef datatable_t* level_t;
-typedef datatable_t* entity_t;
-
 #endif

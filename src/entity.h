@@ -1,3 +1,4 @@
+#include "datatable.h"
 #include "geometry.h"
 
 #ifndef ENTITY_H
@@ -5,6 +6,8 @@
 
 #define SUBPIX         8
 #define NOT_SET       -1
+
+typedef datatable_t* entity_t;
 
 int ENT_anim_len(int bpt, int anim);
 int ENT_frame_data(int bpt, int state, int frame, int comp, int val);
