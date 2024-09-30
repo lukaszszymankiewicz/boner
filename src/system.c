@@ -40,16 +40,16 @@ const static int FULL_JUMP_POWUH  = (2 * JUMP_H) / JUMP_T_HALF;
 const static int BASE_JUMP_POWUH  = (int)(FULL_JUMP_POWUH / (PREJUMP_LEN+1));
 const static int PRE_JUMP_POWUH   = (int)(FULL_JUMP_POWUH / (PREJUMP_LEN+1));
 
-static int MOVE_POWUH      = SUBPIX * 3;
-static int MX_VEL_X        = SUBPIX * 6;
-static int MX_VEL_Y_DOWN   = -1 * GRAVITY * 4;
-static int X_FRICTION      = 8;
-static int AIR_X_FRICTION  = 0;
+const static int RIGHT_DIR_COEF  = POSITIVE;
+const static int LEFT_DIR_COEF   = NEGATIVE;
+const static int UP_DIR_COEF     = POSITIVE;
+const static int DOWN_DIR_COEF   = NEGATIVE;
 
-static int RIGHT_DIR_COEF  = POSITIVE;
-static int LEFT_DIR_COEF   = NEGATIVE;
-static int UP_DIR_COEF     = POSITIVE;
-static int DOWN_DIR_COEF   = NEGATIVE;
+const static int MOVE_POWUH      = SUBPIX * 3;
+const static int MX_VEL_X        = SUBPIX * 6;
+const static int MX_VEL_Y_DOWN   = DOWN_DIR_COEF * GRAVITY * 8;
+const static int X_FRICTION      = 8;
+const static int AIR_X_FRICTION  = 0;
 
 const static int SECTOR_WIDTH  = 160;
 const static int SECTOR_HEIGHT = 120;
