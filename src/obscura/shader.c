@@ -17,6 +17,8 @@
 #define ALLOWED_ATTRIB_NAME_LEN   16
 #define UNUSED_SHADER_PROGRAM_ID  -1
 
+shader_program_t* shader_library[SHADER_ALL] = { NULL };
+
 int max_buffer_len              = 512;
 
 int SHADER_check_compile_status(
@@ -229,6 +231,29 @@ shader_program_t* SHADER_init(
     return shader_program;
 }
 
+shader_program_blueprint_t shader_texture = {
+    SHADER_TEXTURE,
+    "./src/obscura/shaders/tex_vertex.glsl",
+    "./src/obscura/shaders/tex_fragment.glsl",
+    "",
+};
+
+void SHADER_read_blueprint(
+    shader_program_blueprint_t *blueprint
+) {
+    shader_program_t* shader = SHADER_init(
+        blueprint->vertex_shader_path,
+        blueprint->fragment_shader_path,
+        blueprint->geomentry_shader_path
+    );
+
+    if (shader) {
+        printf("[SHADER (%d) read]\n", shader->program);
+    }
+
+    shader_library[blueprint->id] = shader;
+};
+
 void SHADER_free(
     shader_program_t *shader
 ) {
@@ -240,7 +265,19 @@ void SHADER_free(
         shader->uniforms[i] = NULL;
     }
 
+    printf("[SHADER (%d) freed]\n", shader->program);
     glDeleteProgram(shader->program);
     free(shader);
     shader = NULL;
 }
+
+void SHADER_create_library(
+) {
+    SHADER_read_blueprint(&shader_texture);
+};
+
+void SHADER_free_library(
+) {
+    SHADER_free(shader_library[SHADER_TEXTURE]);
+};
+

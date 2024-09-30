@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #include "gfx.h"
+#include "shader.h"
 
 // shamesly copied from Stack Overflow
 void GLAPIENTRY MessageCallback(
@@ -35,7 +36,7 @@ void GFX_init_sdl_with_gl(
 void GFX_init_glew(
 ) {
     glewInit();
-}
+};
 
 void GFX_init_gl_params(
 ) {
@@ -43,7 +44,7 @@ void GFX_init_gl_params(
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(MessageCallback, 0);
-}
+};
 
 void GFX_init_png(
 ) {
@@ -56,9 +57,10 @@ void GFX_init(
     GFX_init_glew();
     GFX_init_gl_params();
     GFX_init_png();
-}
+    SHADER_create_library();
+};
 
 void GFX_free(
 ) {
-    // lenny face
-}
+    SHADER_free_library();
+};

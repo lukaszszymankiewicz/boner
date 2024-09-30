@@ -38,7 +38,6 @@ CFILES =                                 \
 	$(SRCDIR)/$(RENDER)/mat.c            \
 	$(SRCDIR)/$(RENDER)/canvas.c         \
 	$(SRCDIR)/$(RENDER)/shader.c         \
-	$(SRCDIR)/$(RENDER)/shaders.c        \
 	$(SRCDIR)/$(RENDER)/texture.c        \
     $(SRCDIR)/$(RENDER)/render.c         \
     $(SRCDIR)/$(RENDER)/window.c         \
@@ -64,7 +63,6 @@ OBJS =                                     \
     $(BUILDDIR)/$(RENDER)/render.o         \
 	$(BUILDDIR)/$(RENDER)/canvas.o         \
 	$(BUILDDIR)/$(RENDER)/shader.o         \
-	$(BUILDDIR)/$(RENDER)/shaders.o        \
 	$(BUILDDIR)/$(RENDER)/texture.o        \
 	$(BUILDDIR)/$(RENDER)/window.o         \
 	$(BUILDDIR)/collision.o                \

@@ -8,13 +8,19 @@ enum SHADER_IDX {
     SHADER_ALL
 };
 
-
 typedef struct uniform {
     int   loc;
     int   type;
     int   size;
     char *name;
 } uniform_t;
+
+typedef struct shader_program_blueprint {
+    int   id;
+    const char *vertex_shader_path;
+    const char *fragment_shader_path;
+    const char *geomentry_shader_path;
+} shader_program_blueprint_t;
 
 typedef struct shader_program {
     int           program;
@@ -36,8 +42,7 @@ shader_program_t* SHADER_init(
 shader_program_t *shader_library[SHADER_ALL];
 
 void SHADER_free(shader_program_t *shader);
-
-void LIB_create_shaders_library();
-void LIB_free_shaders_library();
+void SHADER_create_library();
+void SHADER_free_library();
 
 #endif

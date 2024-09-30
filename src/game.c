@@ -126,19 +126,14 @@ void GAME_new(
 
     LVLMAN_set_level(resources[LEVEL_NEW]);
 
-    // TODO: this should be invoked by one OBSCURA_init() function (both 
-    // LIB_create_shaders_library and GFX_init)
     GFX_init();
-    LIB_create_shaders_library();
 
     GAME_fill_canvas();
 }
 
 void GAME_close(
 ) {
-    // TODO: this should be invoked by OBSCURA_free() function
-    LIB_free_shaders_library();
-
+    GFX_free();
     RES_free_resources(datas);
     MODULES_free();
     free(game);
