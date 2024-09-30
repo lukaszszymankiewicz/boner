@@ -128,8 +128,7 @@ void GAME_new(
     GAME_init();
     MODULES_init();
     
-    // TODOL this 5 should be reachable somehow
-    RES_read_resources(datas, 5);
+    RES_read_resources(datas);
 
     GAME_set_level();
 
@@ -145,7 +144,8 @@ void GAME_close(
 ) {
     // TODO: this should be invoked by OBSCURA_free() function
     LIB_free_shaders_library();
-    RES_free_resources(datas, 5);
+
+    RES_free_resources(datas);
     MODULES_free();
     free(game);
     SDL_Quit();
