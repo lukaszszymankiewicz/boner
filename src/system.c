@@ -481,6 +481,7 @@ void SYSTEM_horizontal_friction(
     // left
     if (xv < 0) {
         new_xv = MIN(0, xv + X_FRICTION);
+
     // right
     } else {
         new_xv = MAX(0, xv - X_FRICTION);
