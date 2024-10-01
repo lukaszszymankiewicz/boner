@@ -244,20 +244,18 @@ void SYSTEM_put_to_canvas(
     int frame_w = LVLMAN_get_component(ent, ENTITY_COMPONENT_FRAME_W);
     int frame_h = LVLMAN_get_component(ent, ENTITY_COMPONENT_FRAME_H);
 
-    int flip_hor = dir;
+    draw_rect_t draw = { x, y, frame_w, frame_h, dir, false };
+    draw_rect_t clip = { frame_x, frame_y, frame_w, frame_h, dir, false };
+
     int camera_x = window->camera_x;
     int camera_y = window->camera_y;
     
-    // TODO: pass whole texture here!
     CANVAS_put_texture_to_canvas(
         canvas,
         camera_x,   camera_y,
-        x,          y,
-        frame_w,    frame_h,
-        frame_x,    frame_y,
-        frame_w,    frame_h,
+        &draw,
+        &clip,
         texture_w,  texture_h,
-        flip_hor,   false,
         texture_id, sprite
     );
 }

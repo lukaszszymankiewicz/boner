@@ -223,27 +223,25 @@ array_t *CANVAS_set_scale(
 }
 
 array_t *CANVAS_texture_pos(
-    int   draw_x, int   draw_y,
-    int   draw_w, int   draw_h,
-    int   clip_x, int   clip_y,
-    int   clip_w, int   clip_h,
-    int    tex_w, int    tex_h,
-    bool  flip_w, bool  flip_h
+    draw_rect_t *draw,
+    draw_rect_t *clip,
+    int    tex_w,
+    int    tex_h
 ) {
-    int corr_w = (int)(flip_w) * clip_w;
-    int corr_h = (int)(flip_h) * clip_h;
+    int corr_w = (int)(draw->flip_w) * clip->w;
+    int corr_h = (int)(draw->flip_h) * clip->h;
     
     array_t *pos_arr = CANVAS_coord_to_matrix(
-        (float)(draw_x +      0),
-        (float)(draw_y +      0),
-        (float)(draw_x + draw_w),
-        (float)(draw_y + draw_h)
+        (float)(draw->x +       0),
+        (float)(draw->y +       0),
+        (float)(draw->x + draw->w),
+        (float)(draw->y + draw->h)
     );
     array_t *tex_arr = CANVAS_coord_to_matrix(
-        (float)(clip_x +      0 + corr_w) / (float)tex_w,
-        (float)(clip_y + clip_h - corr_h) / (float)tex_h,
-        (float)(clip_x + clip_w - corr_w) / (float)tex_w,
-        (float)(clip_y +      0 + corr_h) / (float)tex_h
+        (float)(clip->x +       0 + corr_w) / (float)tex_w,
+        (float)(clip->y + clip->h - corr_h) / (float)tex_h,
+        (float)(clip->x + clip->w - corr_w) / (float)tex_w,
+        (float)(clip->y +       0 + corr_h) / (float)tex_h
     );
 
     array_t *new = NULL;
@@ -252,27 +250,17 @@ array_t *CANVAS_texture_pos(
     return new;
 }
 
-// TODO: this function is humngous!
 void CANVAS_put_texture_to_canvas(
     canvas_t* canvas,
     int   camera_x,  int   camera_y,
-    int   draw_x,    int   draw_y,
-    int   draw_w,    int   draw_h,
-    int   clip_x,    int   clip_y,
-    int   clip_w,    int   clip_h,
+    draw_rect_t *draw,
+    draw_rect_t *clip,
     int    tex_w,    int    tex_h,
-    bool  flip_w,    bool  flip_h,
     int  texture,    int   sprite      
 ) {
-    array_t *vertices = CANVAS_texture_pos(
-        draw_x,     draw_y,
-        draw_w,     draw_h,
-        clip_x,     clip_y,
-        clip_w,     clip_h,
-        tex_w,      tex_h,
-        flip_w,     flip_h
-    );
-
+    array_t *vertices = CANVAS_texture_pos(draw, clip, tex_w, tex_h);
+    
+    // TODO: some method here!
     render_object_t* object = &(canvas->layers[canvas->cur_layer].objs[sprite]);
 
     object->shader_id       = SHADER_TEXTURE;
@@ -302,24 +290,24 @@ void CANVAS_draw_scaled_buffer(
 ) {
     int buffer = canvas->cur_buffer;
 
-    int texture = canvas->buffers[canvas->cur_buffer]->texture;
-    int x0      = canvas->buffers[canvas->cur_buffer]->x0;
-    int y0      = canvas->buffers[canvas->cur_buffer]->y0;
-    int m       = canvas->buffers[canvas->cur_buffer]->m;
-    int w       = canvas->buffers[canvas->cur_buffer]->w;
-    int h       = canvas->buffers[canvas->cur_buffer]->h;
+    int texture = canvas->buffers[buffer]->texture;
+    int x0      = canvas->buffers[buffer]->x0;
+    int y0      = canvas->buffers[buffer]->y0;
+    int m       = canvas->buffers[buffer]->m;
+    int w       = canvas->buffers[buffer]->w;
+    int h       = canvas->buffers[buffer]->h;
 
     CANVAS_activate_buffer(canvas, DEFAULT_FRAMEBUFFER);
+
+    draw_rect_t draw = { x0, y0, w*m, h*m, false, true };
+    draw_rect_t clip = { 0, 0, w, h, false, true };
 
     CANVAS_put_texture_to_canvas(
         canvas,
         0,     0,
-        x0,    y0,
-        w*m,   h*m,
-        0,     0,
+        &draw,
+        &clip,
         w,     h,
-        w,     h,
-        false, true,
         texture, FIRST_EFFECT_IDX
     );
 

@@ -41,6 +41,15 @@ typedef struct canvas {
     framebuffer_t     *buffers[MAX_BUFFERS_ON_CANVAS];    
 } canvas_t; 
 
+typedef struct draw_rect {
+    int x;
+    int y;
+    int w;
+    int h;
+    int flip_w;
+    int flip_h;
+} draw_rect_t; 
+
 canvas_t* CANVAS_init();
 void CANVAS_clear(canvas_t* canvas);
 void CANVAS_add_layer(canvas_t* canvas, int layer);
@@ -54,14 +63,14 @@ void CANVAS_render_current_layer(canvas_t* canvas);
 
 void CANVAS_put_texture_to_canvas(
     canvas_t* canvas,
-    int      camera_x,  int   camera_y,
-    int      draw_x,    int   draw_y,
-    int      draw_w,    int   draw_h,
-    int      clip_x,    int   clip_y,
-    int      clip_w,    int   clip_h,
-    int      tex_w,     int   tex_h,
-    bool     flip_w,    bool  flip_h,
-    int      texture,   int   sprite
+    int      camera_x,
+    int      camera_y,
+    draw_rect_t *draw,
+    draw_rect_t *clip,
+    int      tex_w,
+    int      tex_h,
+    int      texture,
+    int      sprite
 );
 
 #endif
