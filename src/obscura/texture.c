@@ -52,6 +52,7 @@ texture_t* TEX_read_texture(
 
     texture->surface = surface;
     texture->gl_id   = gl_id;
+    texture->texture = gl_id;
     texture->width   = surface->w;
     texture->height  = surface->h;
     texture->sprite  = sprite;

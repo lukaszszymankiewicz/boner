@@ -252,8 +252,7 @@ void SYSTEM_put_to_canvas(
         camera_x,   camera_y,
         &draw,
         &clip,
-        texture_w,  texture_h,
-        texture_id, sprite
+        texture
     );
 }
 

@@ -11,10 +11,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "canvas.h"
 #include "framebuffer.h"
 #include "mat.h"
 #include "render.h"
-#include "canvas.h"
 #include "texture.h"
 
 #define RECT_VERTICES_ROWS         6
@@ -256,16 +256,16 @@ void CANVAS_put_texture_to_canvas(
     int   camera_x,  int   camera_y,
     draw_rect_t *draw,
     draw_rect_t *clip,
-    int    tex_w,    int    tex_h,
-    int  texture,    int   sprite      
+    texture_t* texture
 ) {
-    array_t *vertices = CANVAS_texture_pos(draw, clip, tex_w, tex_h);
-    
+    array_t *vertices = CANVAS_texture_pos(draw, clip, texture->width, texture->height);
+    int sprite = texture->sprite;  
+
     // TODO: some method here!
     render_object_t* object = &(canvas->layers[canvas->cur_layer].objs[sprite]);
 
     object->shader_id       = SHADER_TEXTURE;
-    object->texture         = texture;
+    object->texture         = texture->texture;
     object->mode            = RENDER_MODE_TEXTURE;
     object->vertices        = MAT_append(object->vertices, vertices);
     object->n_vertices      = MAT_n(object->vertices);
@@ -289,7 +289,7 @@ void CANVAS_put_texture_to_canvas(
 void CANVAS_draw_scaled_buffer(
     canvas_t* canvas
 ) {
-    int buffer = canvas->cur_buffer;
+    int buffer  = canvas->cur_buffer;
 
     int texture = canvas->buffers[buffer]->texture;
     int x0      = canvas->buffers[buffer]->x0;
@@ -308,8 +308,7 @@ void CANVAS_draw_scaled_buffer(
         0,     0,
         &draw,
         &clip,
-        w,     h,
-        texture, SCALED_BUFFER_SPRITE
+        canvas->buffers[1]
     );
 
     CANVAS_activate_buffer(canvas, buffer);

@@ -67,10 +67,7 @@ void CANVAS_put_texture_to_canvas(
     int      camera_y,
     draw_rect_t *draw,
     draw_rect_t *clip,
-    int      tex_w,
-    int      tex_h,
-    int      texture,
-    int      sprite
+    texture_t* texture
 );
 
 #endif
