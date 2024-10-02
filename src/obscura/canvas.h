@@ -38,7 +38,7 @@ typedef struct canvas {
     int                cur_layer;
     int                cur_buffer;
     layer_t            layers[MAX_LAYERS_ON_CANVAS];
-    framebuffer_t     *buffers[MAX_BUFFERS_ON_CANVAS];    
+    texture_t         *buffers[MAX_BUFFERS_ON_CANVAS];    
 } canvas_t; 
 
 typedef struct draw_rect {

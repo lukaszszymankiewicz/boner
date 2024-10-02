@@ -56,7 +56,7 @@ void CANVAS_clear(
     canvas->cur_layer                 = -1;
 
     for (int b=0; b<canvas->n_buffers; b++) {
-        RENDER_clear_buffer(canvas->buffers[b]->id);
+        RENDER_clear_buffer(canvas->buffers[b]->gl_id);
     }
 }
 
@@ -87,14 +87,13 @@ void CANVAS_add_defalt_buffer(
     int      w,
     int      h
 ) {
-    canvas->buffers[canvas->n_buffers]          = (framebuffer_t*)malloc(sizeof(framebuffer_t));
+    canvas->buffers[canvas->n_buffers]          = (texture_t*)malloc(sizeof(texture_t));
     canvas->buffers[canvas->n_buffers]->x0      = 0;
     canvas->buffers[canvas->n_buffers]->y0      = 0;
-    canvas->buffers[canvas->n_buffers]->w       = w;
-    canvas->buffers[canvas->n_buffers]->h       = h;
+    canvas->buffers[canvas->n_buffers]->width   = w;
+    canvas->buffers[canvas->n_buffers]->height  = h;
     canvas->buffers[canvas->n_buffers]->m       = 1;
     canvas->buffers[canvas->n_buffers]->texture = 0;
-    canvas->buffers[canvas->n_buffers]->id      = DEFAULT_FRAMEBUFFER;
 
     canvas->n_buffers++;
 }
@@ -174,7 +173,7 @@ void CANVAS_free(
     CANVAS_clear(canvas);
 
     for (int i=0; i<canvas->n_buffers; i++) {
-        BUFFER_destroy(canvas->buffers[i]->id);
+        BUFFER_destroy(canvas->buffers[i]->gl_id);
         BUFFER_free(canvas->buffers[i]);
         canvas->buffers[i] = NULL;
     }
@@ -216,8 +215,8 @@ array_t *CANVAS_coord_to_matrix(
 array_t *CANVAS_set_scale(
     canvas_t* canvas
 ) {
-    int w = canvas->buffers[canvas->cur_buffer]->w;
-    int h = canvas->buffers[canvas->cur_buffer]->h;
+    int w = canvas->buffers[canvas->cur_buffer]->width;
+    int h = canvas->buffers[canvas->cur_buffer]->height;
 
     return MAT_vec2_new(w, h);
 }
@@ -294,8 +293,8 @@ void CANVAS_draw_scaled_buffer(
     int x0      = canvas->buffers[buffer]->x0;
     int y0      = canvas->buffers[buffer]->y0;
     int m       = canvas->buffers[buffer]->m;
-    int w       = canvas->buffers[buffer]->w;
-    int h       = canvas->buffers[buffer]->h;
+    int w       = canvas->buffers[buffer]->width;
+    int h       = canvas->buffers[buffer]->height;
 
     CANVAS_activate_buffer(canvas, DEFAULT_FRAMEBUFFER);
 
@@ -333,9 +332,9 @@ void CANVAS_render_current_layer(
         }
 
         RENDER_set_viewport(
-            canvas->buffers[target]->id,
-            canvas->buffers[target]->w,
-            canvas->buffers[target]->h
+            canvas->buffers[target]->gl_id,
+            canvas->buffers[target]->width,
+            canvas->buffers[target]->height
         );
 
         RENDER_shader(

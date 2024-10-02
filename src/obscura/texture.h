@@ -6,11 +6,15 @@
 #define DEFAULT_TEXTURE_UNIT 0
 
 typedef struct texture {
-    int          gl_id;
-    int          sprite;
     SDL_Surface *surface;
+    int          gl_id;    // gl id
+    int          sprite;   // game id
+    int          texture;  // gl tex id
     int          width;
     int          height;
+    int          x0;
+    int          y0;
+    int          m;
 } texture_t;
 
 texture_t* TEX_read_texture(const char *filepath, int sprite);

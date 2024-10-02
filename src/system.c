@@ -249,7 +249,7 @@ void SYSTEM_put_to_canvas(
 
     int camera_x = window->camera_x;
     int camera_y = window->camera_y;
-    
+
     CANVAS_put_texture_to_canvas(
         canvas,
         camera_x,   camera_y,
@@ -264,8 +264,8 @@ void SYSTEM_set_camera(
     int ent
 ) {
     int buffer = LVLMAN_get_component(ent, ENTITY_COMPONENT_BUFFER);
-    int w      = canvas->buffers[buffer]->w;
-    int h      = canvas->buffers[buffer]->h;
+    int w      = canvas->buffers[buffer]->width;
+    int h      = canvas->buffers[buffer]->height;
 
     WINDOW_set(
         window,

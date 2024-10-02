@@ -6,9 +6,11 @@
 
 #include "framebuffer.h"
 #include "window.h"
+#include "texture.h"
 
-framebuffer_t* BUFFER_init(
-    game_window_t *window,
+
+texture_t* BUFFER_init(
+    game_window_t* window,
     int            w,
     int            h
 ) {
@@ -34,8 +36,12 @@ framebuffer_t* BUFFER_init(
         assert(m==1);
     }
 
-    framebuffer_t* framebuffer = NULL;
-    framebuffer                = (framebuffer_t*)malloc(sizeof(framebuffer_t));
+    // check whether the calculation is correct
+    assert((window->width  - w * m) <= m);
+    assert((window->height - h * m) <= m);
+
+    texture_t* framebuffer = NULL;
+    framebuffer            = (texture_t*)malloc(sizeof(texture_t));
 
     GLuint id;
     glGenFramebuffers(1, &id);
@@ -63,17 +69,14 @@ framebuffer_t* BUFFER_init(
         return NULL;
     }
     
-    framebuffer->id         = id;
+    framebuffer->surface    = NULL;
+    framebuffer->gl_id      = id;
     framebuffer->texture    = tex;
     framebuffer->x0         = 0;
     framebuffer->y0         = 0;
     framebuffer->m          = m;
-    framebuffer->w          = w;
-    framebuffer->h          = h;
-    
-    // check whether the calculation is correct
-    assert((window->width  - w * m) <= m);
-    assert((window->height - h * m) <= m);
+    framebuffer->width      = w;
+    framebuffer->height     = h;
 
     glEnablei(GL_BLEND, id);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -89,7 +92,7 @@ void BUFFER_destroy(
 }
 
 void BUFFER_free(
-    framebuffer_t* framebuffer
+    texture_t* framebuffer
 ) {
     free(framebuffer);
     framebuffer = NULL;
