@@ -8,7 +8,7 @@ game_timer_t     *cap_timer;
 game_timer_t     *fps_timer;
 game_window_t    *window;
 level_manager_t  *level_manager;
-canvas_t          *canvas;
+canvas_t         *canvas;
 
 void MODULES_init(
 ) {

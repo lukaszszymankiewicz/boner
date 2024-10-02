@@ -10,24 +10,25 @@
 
 
 texture_t* BUFFER_init(
-    game_window_t* window,
+    int            window_width,
+    int            window_height,
     int            w,
     int            h
 ) {
-    assert(w<=window->width);
-    assert(h<=window->height);
+    assert(w<=window_width);
+    assert(h<=window_height);
     
     // get multiplication coeficient for pixel perfect scaling
-    int w_coef = (int)window->width  / w;
-    int h_coef = (int)window->height / h;
+    int w_coef = (int)window_width  / w;
+    int h_coef = (int)window_height / h;
     
     int m = (w_coef > h_coef) ? h_coef : w_coef;
 
     // buffer with size other tham physical window size must be corrected to fit
     // entire screen
-    if ((w != window->width) || (h != window->height)) {
-        w += ((window->width  - (m*w)) / m);
-        h += ((window->height - (m*h)) / m);
+    if ((w != window_width) || (h != window_height)) {
+        w += ((window_width  - (m*w)) / m);
+        h += ((window_height - (m*h)) / m);
 
         // few additional pixels to corver division inaccuracies
         w += m;
@@ -37,8 +38,8 @@ texture_t* BUFFER_init(
     }
 
     // check whether the calculation is correct
-    assert((window->width  - w * m) <= m);
-    assert((window->height - h * m) <= m);
+    assert((window_width  - w * m) <= m);
+    assert((window_height - h * m) <= m);
 
     texture_t* framebuffer = NULL;
     framebuffer            = (texture_t*)malloc(sizeof(texture_t));

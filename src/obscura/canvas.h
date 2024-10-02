@@ -8,10 +8,10 @@
 #define CANVAS_H
 
 #define MAX_TEXTURE_NUMBER           4
-#define MAX_LAYERS_ON_CANVAS          6
-#define MAX_BUFFERS_ON_CANVAS         3
+#define MAX_LAYERS_ON_CANVAS         6
+#define MAX_BUFFERS_ON_CANVAS        3
 #define MAX_EFFECTS_ON_LAYER         2
-#define FIRST_EFFECT_IDX             MAX_TEXTURE_NUMBER + 1
+#define SCALED_BUFFER_SPRITE         MAX_TEXTURE_NUMBER + 1
 #define MAX_DRAWBLE_OBJECTS_ON_LAYER MAX_TEXTURE_NUMBER + MAX_EFFECTS_ON_LAYER
 
 
@@ -56,7 +56,7 @@ void CANVAS_add_layer(canvas_t* canvas, int layer);
 void CANVAS_activate_buffer(canvas_t* canvas, int buffer);
 void CANVAS_activate_layer(canvas_t* canvas, int layer);
 void CANVAS_add_defalt_buffer(canvas_t* canvas, int w, int h);
-void CANVAS_add_buffer(canvas_t *canvas, game_window_t *window, int id, int w, int h);
+void CANVAS_add_buffer(int id, canvas_t *canvas, int window_w, int window_h, int w, int h);
 void CANVAS_draw_scaled_buffer(canvas_t* canvas);
 void CANVAS_free(canvas_t* canvas);
 void CANVAS_render_current_layer(canvas_t* canvas);

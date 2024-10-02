@@ -99,13 +99,15 @@ void CANVAS_add_defalt_buffer(
 }
 
 void CANVAS_add_buffer(
+    int            sprite,
     canvas_t       *canvas,
-    game_window_t *window,
-    int            id,
+    int            window_w,
+    int            window_h,
     int            w,
     int            h
 ) {
-    canvas->buffers[id] = BUFFER_init(window, w, h);
+    canvas->buffers[canvas->n_buffers] = BUFFER_init(window_w, window_h, w, h);
+    canvas->buffers[canvas->n_buffers]->sprite = sprite;
     canvas->n_buffers++;
 }
 
@@ -307,7 +309,7 @@ void CANVAS_draw_scaled_buffer(
         &draw,
         &clip,
         w,     h,
-        texture, FIRST_EFFECT_IDX
+        texture, SCALED_BUFFER_SPRITE
     );
 
     CANVAS_activate_buffer(canvas, buffer);

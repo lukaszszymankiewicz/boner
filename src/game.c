@@ -54,7 +54,7 @@ void GAME_fill_canvas(
     CANVAS_add_layer(canvas, LAYER_SPRITE);
     CANVAS_add_layer(canvas, SCALED_IMAGE);
     
-    CANVAS_add_buffer(canvas, window, FIRST_BUFFER, SCREEN_WIDTH, SCREEN_HEIGHT);
+    CANVAS_add_buffer(SCALED_BUFFER_SPRITE, canvas, window->width, window->height, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 void GAME_update_time(
