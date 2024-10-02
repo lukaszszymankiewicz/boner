@@ -2,9 +2,6 @@
 #include <assert.h>
 #include <stdio.h>
 
-// TODO: check if relevant
-#include <math.h>
-
 #include "obscura/canvas.h"
 #include "obscura/window.h"
 #include "obscura/texture.h"
