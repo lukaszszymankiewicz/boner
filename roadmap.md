@@ -40,7 +40,7 @@ version 0.0.1
   - [x] moving by secotrs crash
   - [x] test it on better level
 
-version 0.0.1
+version 0.0.2
  - [x] scale the skeleton entity to better fit the 32x32 tiles
   - [x] apprioprietly set the skeleton frames! (gun in sliced now!)
  - [x] animation frame is not correctly set 
@@ -54,8 +54,12 @@ version 0.0.1
     highest-left point of frame but it should be modifiable (done by properly
     setting the frame image)
  - [x] skeleton does not stop walking after losing all the x-velocity
+ - [ ] segfaults while playing
+
+version 0.0.3
  - [ ] behaviours should have its own basic scripting language (rethink it!)
  - [ ] some easy way to record gameplay (and replay it)
+ - [ ] refine hitboxes (guns should propably be out of hitbox of skeleton)
 
 
 UTILS:
