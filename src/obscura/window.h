@@ -19,6 +19,7 @@ typedef struct game_window {
 } game_window_t;
 
 game_window_t* WINDOW_init(char *name);
+
 void WINDOW_update(game_window_t* window);
 void WINDOW_free(game_window_t* window);
 void WINDOW_set(game_window_t* window, int x, int y);

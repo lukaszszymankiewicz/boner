@@ -1,11 +1,6 @@
 /* Creating and managing window related code */
 
-//TODO: check if relevant
 #include <GL/glew.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-
-#include <SDL2/SDL_image.h>
 
 #include <stdio.h>
 #include <stdlib.h>
