@@ -599,7 +599,6 @@ void SYSTEM_set_defaults(
         if (ENT_check_def(comp, bpt)) {
             int val = ENT_get_def(comp, bpt);
 
-            // TODO: correct it (without the sum operator)
             DATATABLE_create(level_manager->level, ent+comp);
 
             int* entry = LVLMAN_get_entry(ent, comp);
