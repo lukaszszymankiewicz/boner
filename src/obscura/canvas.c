@@ -136,6 +136,13 @@ void CANVAS_set_camera(
     canvas->camera_y = y;
 };
 
+void CANVAS_reset_camera(
+    canvas_t *canvas
+) {
+    canvas->camera_x = 0;
+    canvas->camera_y = 0;
+};
+
 void CANVAS_activate_buffer(
     canvas_t* canvas,
     int      buffer
@@ -311,15 +318,13 @@ void CANVAS_draw_scaled_buffer(
     draw_rect_t draw = { x0, y0, w*m, h*m, false, true };
     draw_rect_t clip = { 0, 0, w, h, false, true };
     
-    // TODO: rereset the camera?
-    CANVAS_set_camera(canvas, 0, 0);
+    CANVAS_reset_camera(canvas);
 
     CANVAS_put_texture_to_canvas(
         canvas,
         &draw,
         &clip,
-        // TODO: what now? This ONE looks veeeeery magical
-        canvas->buffers[1]
+        canvas->buffers[SCALED_IMAGE_FRAMEBUFFER]
     );
 
     CANVAS_activate_buffer(canvas, buffer);
