@@ -7,13 +7,19 @@
 #ifndef CANVAS_H
 #define CANVAS_H
 
+// these are default frambuffer which must be present, custom ones can be
+// introduced as well
+enum FRAMEBUFFERS {
+    DEFAULT_FRAMEBUFFER,
+    SCALED_IMAGE_FRAMEBUFFER
+};
+
 #define MAX_TEXTURE_NUMBER           4
 #define MAX_LAYERS_ON_CANVAS         6
 #define MAX_BUFFERS_ON_CANVAS        3
 #define MAX_EFFECTS_ON_LAYER         2
 #define SCALED_BUFFER_SPRITE         MAX_TEXTURE_NUMBER + 1
 #define MAX_DRAWBLE_OBJECTS_ON_LAYER MAX_TEXTURE_NUMBER + MAX_EFFECTS_ON_LAYER
-
 
 typedef struct render_object {
     int         on;

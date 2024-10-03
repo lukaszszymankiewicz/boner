@@ -9,7 +9,6 @@
 // base screen size, rendering will be scaling to this resolution
 #define SCREEN_HEIGHT                240                
 #define SCREEN_WIDTH                 320               
-#define DEFAULT_FRAMEBUFFER          0
 
 typedef struct game_window {
     SDL_Window    *screen;

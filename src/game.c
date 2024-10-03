@@ -17,8 +17,6 @@
 #include "symbols.h"
 #include "timer.h"
 
-#define FIRST_BUFFER 1
-
 game_t *game      = NULL;
 
 void GAME_handle_window_events(
@@ -75,7 +73,7 @@ bool GAME_shold_run(
 
 void GAME_render_scaled_image(
 ) {
-    CANVAS_activate_buffer(canvas, FIRST_BUFFER);
+    CANVAS_activate_buffer(canvas, SCALED_IMAGE_FRAMEBUFFER);
     CANVAS_activate_layer(canvas, SCALED_IMAGE);
     CANVAS_draw_scaled_buffer(canvas);
 
