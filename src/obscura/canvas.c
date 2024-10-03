@@ -242,9 +242,10 @@ array_t *CANVAS_set_scale(
 array_t *CANVAS_texture_pos(
     draw_rect_t *draw,
     draw_rect_t *clip,
-    int    tex_w,
-    int    tex_h
+    texture_t   *texture
 ) {
+    int tex_w  = texture->width;
+    int tex_h  = texture->height;
     int corr_w = (int)(draw->flip_w) * clip->w;
     int corr_h = (int)(draw->flip_h) * clip->h;
     
@@ -267,17 +268,21 @@ array_t *CANVAS_texture_pos(
     return new;
 }
 
+render_object_t* CANVAS_get_cur_obj(
+    canvas_t* canvas,
+    int       sprite
+) {
+    return &(canvas->layers[canvas->cur_layer].objs[sprite]);
+}
+
 void CANVAS_put_texture_to_canvas(
     canvas_t    *canvas,
     draw_rect_t *draw,
     draw_rect_t *clip,
     texture_t   *texture
 ) {
-    array_t *vertices = CANVAS_texture_pos(draw, clip, texture->width, texture->height);
-    int sprite = texture->sprite;  
-
-    // TODO: some method here!
-    render_object_t* object = &(canvas->layers[canvas->cur_layer].objs[sprite]);
+    array_t *vertices       = CANVAS_texture_pos(draw, clip, texture);
+    render_object_t* object = CANVAS_get_cur_obj(canvas, texture->sprite);
 
     object->shader_id       = SHADER_TEXTURE;
     object->texture         = texture->texture;
