@@ -14,8 +14,6 @@
 typedef struct game_window {
     SDL_Window    *screen;
     SDL_GLContext  gl_context;
-    int            camera_x;
-    int            camera_y;
     float          width;
     float          height;
 } game_window_t;

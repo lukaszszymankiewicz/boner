@@ -244,16 +244,7 @@ void SYSTEM_put_to_canvas(
     draw_rect_t draw = { x, y, frame_w, frame_h, dir, false };
     draw_rect_t clip = { frame_x, frame_y, frame_w, frame_h, dir, false };
 
-    int camera_x = window->camera_x;
-    int camera_y = window->camera_y;
-
-    CANVAS_put_texture_to_canvas(
-        canvas,
-        camera_x,   camera_y,
-        &draw,
-        &clip,
-        texture
-    );
+    CANVAS_put_texture_to_canvas(canvas, &draw, &clip, texture);
 }
 
 void SYSTEM_set_camera(
@@ -262,12 +253,10 @@ void SYSTEM_set_camera(
     int buffer = LVLMAN_get_component(ent, ENTITY_COMPONENT_BUFFER);
     int w      = canvas->buffers[buffer]->width;
     int h      = canvas->buffers[buffer]->height;
+    int camera_x = LVLMAN_get_component(ent, ENTITY_COMPONENT_X_POS) - (w / 2);
+    int camera_y = LVLMAN_get_component(ent, ENTITY_COMPONENT_Y_POS) - (h / 2);
 
-    WINDOW_set(
-        window,
-        LVLMAN_get_component(ent, ENTITY_COMPONENT_X_POS) - (w / 2),
-        LVLMAN_get_component(ent, ENTITY_COMPONENT_Y_POS) - (h / 2)
-    );
+    CANVAS_set_camera(canvas, camera_x, camera_y);
 }
 
 void SYSTEM_update_sector(

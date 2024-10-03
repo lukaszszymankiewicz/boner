@@ -18,8 +18,6 @@ game_window_t* WINDOW_init(
     game_window_t *window = NULL;
     window                = (game_window_t*)malloc(sizeof(game_window_t));
     window->screen        = NULL;
-    window->camera_x      = 0;
-    window->camera_y      = 0;
 
     window->screen = SDL_CreateWindow(
         name,
@@ -59,15 +57,6 @@ void WINDOW_update(
 ) {
     SDL_GL_SwapWindow(window->screen);
     SDL_UpdateWindowSurface(window->screen);
-};
-
-void WINDOW_set(
-    game_window_t *window,
-    int            x,
-    int            y
-) {
-    window->camera_x = x;
-    window->camera_y = y;
 };
 
 void WINDOW_free(

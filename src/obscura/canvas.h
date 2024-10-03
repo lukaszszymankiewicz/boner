@@ -37,6 +37,8 @@ typedef struct canvas {
     int                n_buffers;
     int                cur_layer;
     int                cur_buffer;
+    int                camera_x;
+    int                camera_y;
     layer_t            layers[MAX_LAYERS_ON_CANVAS];
     texture_t         *buffers[MAX_BUFFERS_ON_CANVAS];    
 } canvas_t; 
@@ -51,6 +53,8 @@ typedef struct draw_rect {
 } draw_rect_t; 
 
 canvas_t* CANVAS_init();
+
+void CANVAS_set_camera(canvas_t *canvas, int x, int y);
 void CANVAS_clear(canvas_t* canvas);
 void CANVAS_add_layer(canvas_t* canvas, int layer);
 void CANVAS_activate_buffer(canvas_t* canvas, int buffer);
@@ -63,8 +67,6 @@ void CANVAS_render_current_layer(canvas_t* canvas);
 
 void CANVAS_put_texture_to_canvas(
     canvas_t* canvas,
-    int      camera_x,
-    int      camera_y,
     draw_rect_t *draw,
     draw_rect_t *clip,
     texture_t* texture

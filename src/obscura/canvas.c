@@ -127,6 +127,15 @@ canvas_t* CANVAS_init(
     return canvas;
 }
 
+void CANVAS_set_camera(
+    canvas_t *canvas,
+    int            x,
+    int            y
+) {
+    canvas->camera_x = x;
+    canvas->camera_y = y;
+};
+
 void CANVAS_activate_buffer(
     canvas_t* canvas,
     int      buffer
@@ -252,11 +261,10 @@ array_t *CANVAS_texture_pos(
 }
 
 void CANVAS_put_texture_to_canvas(
-    canvas_t* canvas,
-    int   camera_x,  int   camera_y,
+    canvas_t    *canvas,
     draw_rect_t *draw,
     draw_rect_t *clip,
-    texture_t* texture
+    texture_t   *texture
 ) {
     array_t *vertices = CANVAS_texture_pos(draw, clip, texture->width, texture->height);
     int sprite = texture->sprite;  
@@ -274,7 +282,7 @@ void CANVAS_put_texture_to_canvas(
     if (object->on == 0) {
         array_t *scale_arr      = CANVAS_set_scale(canvas);
         array_t *texture_arr    = CANVAS_texture_unit();
-        array_t *camera_arr     = MAT_vec2_new(camera_x, camera_y);
+        array_t *camera_arr     = MAT_vec2_new(canvas->camera_x, canvas->camera_y);
 
         CANVAS_add_uniform(object, "aScale", scale_arr); 
         CANVAS_add_uniform(object, "aCamera", camera_arr); 
@@ -302,12 +310,15 @@ void CANVAS_draw_scaled_buffer(
 
     draw_rect_t draw = { x0, y0, w*m, h*m, false, true };
     draw_rect_t clip = { 0, 0, w, h, false, true };
+    
+    // TODO: rereset the camera?
+    CANVAS_set_camera(canvas, 0, 0);
 
     CANVAS_put_texture_to_canvas(
         canvas,
-        0,     0,
         &draw,
         &clip,
+        // TODO: what now? This ONE looks veeeeery magical
         canvas->buffers[1]
     );
 
