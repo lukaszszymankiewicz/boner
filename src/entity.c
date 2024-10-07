@@ -210,3 +210,75 @@ int ENT_get_collide_fun(
 
     return DATATABLE_get_val(ent, col_fun_idx, DATA_COL_D);
 }
+
+int ENT_gravity(
+    int ent
+) {
+    int jump_h      = LVLMAN_get_component(ent, ENTITY_COMPONENT_X_POS);
+    int prejump_len = LVLMAN_get_component(ent, ENTITY_COMPONENT_PREJUMP_LEN);
+    int jump_t_half = LVLMAN_get_component(ent, ENTITY_COMPONENT_JUMP_HALF_T);
+    
+    int gravity = (int)(NEGATIVE * (2 * jump_h) / (jump_t_half * jump_t_half));
+
+    return gravity;
+}
+
+int ENT_falling_gravity(
+    int ent
+) {
+    int weight  = LVLMAN_get_component(ent, ENTITY_COMPONENT_WEIGHT);
+    int gravity = ENT_gravity(ent);
+
+    int falling_gavity = (int)(gravity * weight);
+
+    return falling_gavity;
+}
+
+int ENT_full_jump_power(
+    int ent
+) {
+    int jump_h      = LVLMAN_get_component(ent, ENTITY_COMPONENT_X_POS);
+    int jump_t_half = LVLMAN_get_component(ent, ENTITY_COMPONENT_JUMP_HALF_T);
+
+    int full_jump_power = (int)((2 * jump_h) / jump_t_half);
+
+    return full_jump_power;
+}
+
+int ENT_base_jump_power(
+    int ent
+) {
+    int prejump_len     = LVLMAN_get_component(ent, ENTITY_COMPONENT_PREJUMP_LEN);
+    int full_jump_power = ENT_full_jump_power(ent);
+
+    int base_jump_power = (int)(full_jump_power / (prejump_len+1));
+
+    return base_jump_power;
+}
+
+int ENT_pre_jump_power(
+    int ent
+) {
+    int prejump_len     = LVLMAN_get_component(ent, ENTITY_COMPONENT_PREJUMP_LEN);
+    int full_jump_power = ENT_full_jump_power(ent);
+
+    int pre_jump_power = (int)(full_jump_power / (prejump_len+1));
+
+    return pre_jump_power;
+}
+
+int ENT_max_x_vel(
+    int ent
+) {
+    return LVLMAN_get_component(ent, ENTITY_COMPONENT_MAX_X_VEL);
+}
+
+int ENT_max_y_vel(
+    int ent
+) {
+    int gravity        = ENT_gravity(ent);
+    int max_y_vel_coef = LVLMAN_get_component(ent, ENTITY_COMPONENT_MAX_Y_VEL);
+    int max_y_vel = DOWN_DIR_COEF * gravity * max_y_vel_coef;
+
+    return max_y_vel;
+}

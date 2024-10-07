@@ -22,35 +22,6 @@
 // and neigboughs in each direction in distance of 1 sector is checked
 #define COLLISION_CHECK_DEPTH    1
 
-const static int NEGATIVE  = -1;
-const static int POSITIVE  = 1;
-
-// TODO: those values should be propably just another componnent
-const static int JUMP_H      = SUBPIX * 32 * 5;
-const static int PREJUMP_LEN = 4;
-const static int JUMP_T_HALF = 15;
-
-const static int GRAVITY          = -1 * (2 * JUMP_H) / (JUMP_T_HALF * JUMP_T_HALF);
-const static int FALLING_GRAVITY  = (int)(GRAVITY * 1.5);
-
-const static int FULL_JUMP_POWUH  = (2 * JUMP_H) / JUMP_T_HALF;
-const static int BASE_JUMP_POWUH  = (int)(FULL_JUMP_POWUH / (PREJUMP_LEN+1));
-const static int PRE_JUMP_POWUH   = (int)(FULL_JUMP_POWUH / (PREJUMP_LEN+1));
-
-const static int RIGHT_DIR_COEF  = POSITIVE;
-const static int LEFT_DIR_COEF   = NEGATIVE;
-const static int UP_DIR_COEF     = POSITIVE;
-const static int DOWN_DIR_COEF   = NEGATIVE;
-
-const static int MOVE_POWUH      = SUBPIX * 3;
-const static int MX_VEL_X        = SUBPIX * 6;
-const static int MX_VEL_Y_DOWN   = DOWN_DIR_COEF * GRAVITY * 8;
-const static int X_FRICTION      = 8;
-const static int AIR_X_FRICTION  = 0;
-
-const static int SECTOR_WIDTH  = 160;
-const static int SECTOR_HEIGHT = 120;
-
 // run one phase behaviours for every entity from st to end
 void SYSTEM_run(
     int phase,
@@ -130,10 +101,12 @@ void SYSTEM_add_velocity(
     int new_x;
 
     if (vx>0) {
-        new_x = MIN(vx, MX_VEL_X * RIGHT_DIR_COEF);
+        int mx_vel_x = ENT_max_x_vel(ent);
+        new_x = MIN(vx, mx_vel_x * RIGHT_DIR_COEF);
         LVLMAN_set_component(ent, ENTITY_COMPONENT_X_VEL, new_x);
     } else if (vx<0) {
-        new_x = MAX(vx, MX_VEL_X * LEFT_DIR_COEF);
+        int mx_vel_x = ENT_max_x_vel(ent);
+        new_x = MAX(vx, mx_vel_x * LEFT_DIR_COEF);
         LVLMAN_set_component(ent, ENTITY_COMPONENT_X_VEL, new_x);
     } else {
         new_x = 0;
@@ -144,7 +117,8 @@ void SYSTEM_add_velocity(
         new_y = vy;
         LVLMAN_set_component(ent, ENTITY_COMPONENT_Y_VEL, new_y);
     } else if (vy<0) {
-        new_y = MAX(vy, MX_VEL_Y_DOWN * DOWN_DIR_COEF);
+        int mx_vel_y = ENT_max_y_vel(ent);
+        new_y = MAX(vy, mx_vel_y * DOWN_DIR_COEF);
         LVLMAN_set_component(ent, ENTITY_COMPONENT_Y_VEL, new_y);
     } else {
         new_y = 0;
@@ -204,9 +178,11 @@ void SYSTEM_add_gravity(
     int state = LVLMAN_get_component(ent, ENTITY_COMPONENT_STATE);
 
     if (state == FALLING_DOWN) {
-        LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, FALLING_GRAVITY);
+        int falling_gravity = ENT_falling_gravity(ent);
+        LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, falling_gravity);
     } else {
-        LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, GRAVITY);
+        int gravity = ENT_gravity(ent);
+        LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, gravity);
     }
 }
 
@@ -379,9 +355,10 @@ void SYSTEM_right(
     if (!button) {
         return;
     }
+    int move_power = LVLMAN_get_component(ent, ENTITY_COMPONENT_MOVE_POWUH);
 
     LVLMAN_set_component(ent, ENTITY_COMPONENT_DIR, RIGHT);
-    LVLMAN_add_to_component(ent, ENTITY_COMPONENT_X_VEL, MOVE_POWUH * RIGHT_DIR_COEF);
+    LVLMAN_add_to_component(ent, ENTITY_COMPONENT_X_VEL, move_power * RIGHT_DIR_COEF);
 }
 
 void SYSTEM_left(
@@ -392,9 +369,10 @@ void SYSTEM_left(
     if (!button) {
         return;
     }
+    int move_power = LVLMAN_get_component(ent, ENTITY_COMPONENT_MOVE_POWUH);
 
     LVLMAN_set_component(ent, ENTITY_COMPONENT_DIR, LEFT);
-    LVLMAN_add_to_component(ent, ENTITY_COMPONENT_X_VEL, MOVE_POWUH * LEFT_DIR_COEF);
+    LVLMAN_add_to_component(ent, ENTITY_COMPONENT_X_VEL, move_power * LEFT_DIR_COEF);
 }
 
 void SYSTEM_jump(
@@ -405,9 +383,10 @@ void SYSTEM_jump(
     if (!button) {
         return;
     }
+    int base_jump_power = ENT_base_jump_power(ent);
 
     ENT_change_state(ent, PREJUMP);
-    LVLMAN_set_component(ent, ENTITY_COMPONENT_Y_VEL, BASE_JUMP_POWUH);
+    LVLMAN_set_component(ent, ENTITY_COMPONENT_Y_VEL, base_jump_power);
 }
 
 void SYSTEM_check_if_falling(
@@ -438,14 +417,16 @@ void SYSTEM_horizontal_air_friction(
     if (xv == 0) {
        return;
     }
+
     int new_xv;
-    
+    int air_x_friction = LVLMAN_get_component(ent, ENTITY_COMPONENT_AIR_X_FRICTION);
+
     // left
     if (xv < 0) {
-        new_xv = MIN(0, xv + AIR_X_FRICTION);
+        new_xv = MIN(0, xv + air_x_friction);
     // right
     } else {
-        new_xv = MAX(0, xv - AIR_X_FRICTION);
+        new_xv = MAX(0, xv - air_x_friction);
     }
 
     LVLMAN_set_component(ent, ENTITY_COMPONENT_X_VEL, new_xv);
@@ -461,13 +442,15 @@ void SYSTEM_horizontal_friction(
        return;
     }
     
+    int x_friction = LVLMAN_get_component(ent, ENTITY_COMPONENT_X_FRICTION);
+
     // left
     if (xv < 0) {
-        new_xv = MIN(0, xv + X_FRICTION);
+        new_xv = MIN(0, xv + x_friction);
 
     // right
     } else {
-        new_xv = MAX(0, xv - X_FRICTION);
+        new_xv = MAX(0, xv - x_friction);
     }
     
     if (new_xv == 0) {
@@ -565,7 +548,8 @@ void SYSTEM_continue_jump(
     assert(state==PREJUMP);
 
     if ((timer < delay) && (button)) {
-        LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, PRE_JUMP_POWUH);
+        int pre_jump_power = ENT_pre_jump_power(ent);
+        LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, pre_jump_power);
     } else {
         ENT_change_state(ent, JUMPING);
     }

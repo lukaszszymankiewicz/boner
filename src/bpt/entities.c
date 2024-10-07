@@ -1,16 +1,16 @@
 #include "library.h"
 
-#include "../symbols.h"
 #include "../data.h"
+#include "../symbols.h"
 
 blueprint_t entity_blueprint_hero = {
             { 0                                  ,          ID, 0, 0,                0 },
-            { 1                                  , LEVEL_WIDTH, 0, 0,              274-7+1 },
+            { 1                                  , LEVEL_WIDTH, 0, 0,          282-7+1 },
             { 2                                  ,         MAP, DEFAULT,   0,       40 },
             { 3                                  ,         MAP, ANIMATION, 0,      100 },
             { 4                                  ,         MAP, BEHAVIOUR, 0,     1500 },
             { 5                                  ,         MAP, COLLISION, 0,     3000 },
-            { 40                                 ,           0, 0, 0,               14 },
+            { 40                                 ,           0, 0, 0,               33 },
             { 40 + ENTITY_COMPONENT_ANIM_FRAME   ,     DEFAULT, 0, 0,                0 },
             { 40 + ENTITY_COMPONENT_ANIM_TIMER   ,     DEFAULT, 0, 0,                0 },
             { 40 + ENTITY_COMPONENT_ANIM_DELAY   ,     DEFAULT, 0, 0,                0 },
@@ -37,6 +37,15 @@ blueprint_t entity_blueprint_hero = {
             { 40 + ENTITY_COMPONENT_COLLISIONABLE,     DEFAULT, 0, 0, COLLISION_BEHAVIOUR_NORMAL },
             { 40 + ENTITY_COMPONENT_DIR          ,     DEFAULT, 0, 0,                1 },
             { 40 + ENTITY_COMPONENT_PHASES       ,     DEFAULT, 0, 0,   PHASE_FLAG_ALL },
+            { 40 + ENTITY_COMPONENT_JUMP_H       ,     DEFAULT, 0, 0,  SUBPIX * 32 * 5 },
+            { 40 + ENTITY_COMPONENT_JUMP_HALF_T  ,     DEFAULT, 0, 0,               15 },
+            { 40 + ENTITY_COMPONENT_PREJUMP_LEN  ,     DEFAULT, 0, 0,                4 },
+            { 40 + ENTITY_COMPONENT_WEIGHT       ,     DEFAULT, 0, 0,                2 },
+            { 40 + ENTITY_COMPONENT_MOVE_POWUH   ,     DEFAULT, 0, 0,       SUBPIX * 3 },
+            { 40 + ENTITY_COMPONENT_X_FRICTION   ,     DEFAULT, 0, 0,                8 },
+            { 40 + ENTITY_COMPONENT_AIR_X_FRICTION,    DEFAULT, 0, 0,                2 },
+            { 40 + ENTITY_COMPONENT_MAX_X_VEL   ,      DEFAULT, 0, 0,       SUBPIX * 6 },
+            { 40 + ENTITY_COMPONENT_MAX_Y_VEL   ,      DEFAULT, 0, 0,                8 },
             { 100, METADATA, 4, IDLE,         110  },
             { 101, METADATA, 6, WALKING,      210  },
             { 102, METADATA, 3, JUMPING,      310  },

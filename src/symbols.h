@@ -8,6 +8,8 @@
 #define ANIMATION_BEGIN_IDX     3
 #define BEHAVIOUR_BEGIN_IDX     4
 #define COLLISION_BEGIN_IDX     5
+#define SUBPIX         8
+#define NOT_SET       -1
 
 enum BEHAVIOUR_IDX {
     BEHAVIOUR_DRAW_SPRITE,
@@ -93,7 +95,16 @@ enum ENTITY_COMPONENT {
     ENTITY_COMPONENT_HITBOX_Y       = 28,
     ENTITY_COMPONENT_HITBOX_W       = 29,
     ENTITY_COMPONENT_HITBOX_H       = 30,
-    AVAILABLE_COMPONENTS            = 31
+    ENTITY_COMPONENT_JUMP_H         = 31,
+    ENTITY_COMPONENT_JUMP_HALF_T    = 32,
+    ENTITY_COMPONENT_PREJUMP_LEN    = 33,
+    ENTITY_COMPONENT_WEIGHT         = 34,
+    ENTITY_COMPONENT_MOVE_POWUH     = 35,
+    ENTITY_COMPONENT_X_FRICTION     = 36,
+    ENTITY_COMPONENT_AIR_X_FRICTION = 37,
+    ENTITY_COMPONENT_MAX_X_VEL      = 38,
+    ENTITY_COMPONENT_MAX_Y_VEL      = 39,
+    AVAILABLE_COMPONENTS            = 40
 };
 
 enum ANIMATION_COMPONENT {
@@ -121,5 +132,14 @@ enum COLLISION_BODY_TYPE {
     COLLISION_BODY_SOLID,
     COLLISION_BODY_ALL
 };
+
+const static int NEGATIVE       = -1;
+const static int POSITIVE       =  1;
+const static int RIGHT_DIR_COEF = POSITIVE;
+const static int LEFT_DIR_COEF  = NEGATIVE;
+const static int UP_DIR_COEF    = POSITIVE;
+const static int DOWN_DIR_COEF  = NEGATIVE;
+const static int SECTOR_WIDTH   = 160;
+const static int SECTOR_HEIGHT  = 120;
 
 #endif

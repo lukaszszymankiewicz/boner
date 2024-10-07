@@ -45,7 +45,7 @@ version 0.0.2
   - [x] apprioprietly set the skeleton frames! (gun in sliced now!)
  - [x] animation frame is not correctly set 
  - [x] flipping the frame does not work
- - [ ] remove all TODOs
+ - [x] remove all TODOs
  - [x] resources should be freed corectly
  - [x] strange thrills while jumping high
   - [x] holding jump button allows to jump infinitely
@@ -54,13 +54,14 @@ version 0.0.2
     highest-left point of frame but it should be modifiable (done by properly
     setting the frame image)
  - [x] skeleton does not stop walking after losing all the x-velocity
- - [ ] segfaults while playing
+ - [ ] segfaults while playing (try jumping four times to achieve this behaviour)
 
 version 0.0.3
  - [ ] behaviours should have its own basic scripting language (rethink it!)
  - [ ] some easy way to record gameplay (and replay it)
  - [ ] refine hitboxes (guns should propably be out of hitbox of skeleton)
-
+ - [ ] refine components: right now component can hold only one value, but there
+   is a place for four of them! (sic!)
 
 UTILS:
  - [ ] rethink modules
