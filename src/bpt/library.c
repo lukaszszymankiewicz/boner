@@ -16,10 +16,10 @@ void BPT_serialize(
 
     f = fopen(path, "wb");
     int written_elems = fwrite(bpt, sizeof(base_int), elems, f);
-    printf("elems %d succesfully write to file %s \n", written_elems, path);
+    printf("%d rows of data succesfully write to file %s \n", written_elems, path);
 
     if (written_elems != elems) {
-        printf("write error, elems write = %d, to file %s \n", written_elems, path);
+        printf("write error, rows of data written = %d, to file %s \n", written_elems, path);
     }
 
     fclose(f);
