@@ -57,8 +57,8 @@ version 0.0.2
  - [x] segfaults while playing (try jumping four times to achieve this behaviour)
   - [x] jumping is ok
   - [x] failing down sucks
+ - [x] third platform from left has some collision issues
  - [ ] tweak the hero moving components values
- - [ ] third platform from left has some collision issues
  - [ ] remove ent metadata in level
 
 version 0.0.3

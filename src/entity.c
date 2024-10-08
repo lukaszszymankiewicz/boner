@@ -214,7 +214,7 @@ int ENT_get_collide_fun(
 int ENT_gravity(
     int ent
 ) {
-    int jump_h      = LVLMAN_get_component(ent, ENTITY_COMPONENT_X_POS);
+    int jump_h      = LVLMAN_get_component(ent, ENTITY_COMPONENT_JUMP_H);
     int prejump_len = LVLMAN_get_component(ent, ENTITY_COMPONENT_PREJUMP_LEN);
     int jump_t_half = LVLMAN_get_component(ent, ENTITY_COMPONENT_JUMP_HALF_T);
     
@@ -237,7 +237,7 @@ int ENT_falling_gravity(
 int ENT_full_jump_power(
     int ent
 ) {
-    int jump_h      = LVLMAN_get_component(ent, ENTITY_COMPONENT_X_POS);
+    int jump_h      = LVLMAN_get_component(ent, ENTITY_COMPONENT_JUMP_H);
     int jump_t_half = LVLMAN_get_component(ent, ENTITY_COMPONENT_JUMP_HALF_T);
 
     int full_jump_power = (int)((2 * jump_h) / jump_t_half);
