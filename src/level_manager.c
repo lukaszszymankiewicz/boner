@@ -3,9 +3,9 @@
 #include <stdio.h>
 
 #include "datatable.h"
+#include "level_manager.h"
 #include "macros.h"
 #include "modules.h"
-#include "level_manager.h"
 #include "symbols.h"
 
 void LVLMAN_set_level(
@@ -54,7 +54,7 @@ void LVLMAN_set_focus_x(
 void LVLMAN_set_focus_y(
     int val
 ) {
-    DATATABLE_set_val(level_manager->level, LEVEL_FOCUS_X, DATA_COL_D, val);
+    DATATABLE_set_val(level_manager->level, LEVEL_FOCUS_Y, DATA_COL_D, val);
 }
 
 void LVLMAN_init(
@@ -314,7 +314,9 @@ void LVLMAN_move_ent_to_sector(
     int place = metadata + n + 1; 
     int new_metadata_idx;
 
-    // if key for new entity map is occupied, move of sector metadata +
+    // from 7,6 to 7,7
+
+    // if key for new entity map is occupied, move sector metadata +
     // entity maps needs to be moved to the end
     if (LVLMAN_check(place)) {
 
@@ -327,6 +329,7 @@ void LVLMAN_move_ent_to_sector(
             place = LVLMAN_move_to_end(e);
         }
         place++;
+        assert(false);
     } else {
         new_metadata_idx = metadata;
     }
@@ -368,7 +371,7 @@ void LVLMAN_remove_ent_from_sector(
 
     int metadata_idx = LVLMAN_sector_metadata_idx(sec_x, sec_y);
     int map_idx = metadata_idx + nth + 1;
-
+    
     LVLMAN_delete(map_idx);
 
     // move last entity from old sector to empty space created by moving

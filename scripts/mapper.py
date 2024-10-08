@@ -66,6 +66,11 @@ class Counter:
 
         return self.st
 
+    def get_big(self):
+        self.st += 1000
+
+        return self.st
+
     def get_ent_idx(self):
         self.increase()
 
@@ -276,7 +281,7 @@ def create_map(path, focus_x: int=7, focus_y: int=7):
             assert(y == map_.c)
             assert(6 + y * size_y + x == map_.key);
 
-            meta = Record(counter.get(), METADATA, x, y, 0)
+            meta = Record(counter.get_big(), METADATA, x, y, 0)
             assert(meta.key > max_map)
 
             map_.children = [meta]

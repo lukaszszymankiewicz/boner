@@ -22,73 +22,58 @@
 // and neigboughs in each direction in distance of 1 sector is checked
 #define COLLISION_CHECK_DEPTH    1
 
-// run one phase behaviours for every entity from st to end
+
 void SYSTEM_run(
-    int phase,
-    int phase_depth,
-    int sec_x1,
-    int sec_y1,
-    int sec_x2,
-    int sec_y2
 ) {
+    int phase_depth = FULL_DEPTH;
+
+    int focus_x = LVLMAN_focus_x();
+    int focus_y = LVLMAN_focus_y();
+
+    int sec_x1 = MAX(0, focus_x - phase_depth);
+    int sec_y1 = MAX(0, focus_y - phase_depth);
+    int sec_x2 = MIN(LVLMAN_size_x(), focus_x + phase_depth + 1);
+    int sec_y2 = MIN(LVLMAN_size_y(), focus_y + phase_depth + 1);
+
     assert(sec_x1 >= 0); 
     assert(sec_y1 >= 0); 
     assert(sec_x2 >= 0); 
     assert(sec_y2 >= 0); 
-
-    sec_x1 = MAX(0, sec_x1);
-    sec_y1 = MAX(0, sec_y1);
-
-    sec_x2 = MIN(LVLMAN_size_x(), sec_x2);
-    sec_y2 = MIN(LVLMAN_size_y(), sec_y2);
 
     assert(sec_x2 > sec_x1);
     assert(sec_y2 > sec_y1);
 
     assert(phase_depth >=0);
 
-    ASSERT_RANGE(0, phase, PHASE_ALL);
-    
-    for (int x=sec_x1; x<sec_x2; x++) { 
-        for (int y=sec_y1; y<sec_y2; y++) { 
-    
-            int n_entities = LVLMAN_n_entities(x, y);
 
-            for (int i=0; i<n_entities; i++) {
+    for (int phase=0; phase<PHASE_ALL; phase++) {
+        for (int x=sec_x1; x<sec_x2; x++) { 
+            for (int y=sec_y1; y<sec_y2; y++) { 
+        
+                int n_entities = LVLMAN_n_entities(x, y);
 
-                int idx    = LVLMAN_entity_idx(x, y, i);
-                int phases = LVLMAN_get_component(idx, ENTITY_COMPONENT_PHASES);
+                for (int i=0; i<n_entities; i++) {
 
-                if  (!(phases & (1 << phase))) {
-                    continue;
-                }
+                    int idx    = LVLMAN_entity_idx(x, y, i);
+                    int phases = LVLMAN_get_component(idx, ENTITY_COMPONENT_PHASES);
+                    
+                    // TODO: inline function here?
+                    if (!(phases & (1 << phase))) {
+                        continue;
+                    }
 
-                int bpt = LVLMAN_get_component(idx, ENTITY_COMPONENT_BPT);
-                int state = LVLMAN_try_get_component(idx, ENTITY_COMPONENT_STATE, IDLE);
-                int n_behaviours = ENT_get_n_beh(bpt, state, phase);
+                    int bpt = LVLMAN_get_component(idx, ENTITY_COMPONENT_BPT);
+                    int state = LVLMAN_try_get_component(idx, ENTITY_COMPONENT_STATE, IDLE);
+                    int n_behaviours = ENT_get_n_beh(bpt, state, phase);
 
-                for (int n=0; n<n_behaviours; n++) {
-                    int beh = ENT_get_nth_beh(bpt, state, phase, n);
-                    behaviour_library[beh](idx);
+                    for (int n=0; n<n_behaviours; n++) {
+                        int beh = ENT_get_nth_beh(bpt, state, phase, n);
+                        behaviour_library[beh](idx);
+                    }
                 }
             }
         }
     }
-}
-
-void SYSTEM_run_on_quadrant(
-    int phase,
-    int phase_depth
-) {
-    int focus_x = LVLMAN_focus_x();
-    int focus_y = LVLMAN_focus_y();
-
-    int sec_x1 = focus_x - phase_depth;
-    int sec_y1 = focus_y - phase_depth;
-    int sec_x2 = focus_x + phase_depth + 1;
-    int sec_y2 = focus_y + phase_depth + 1;
-
-    SYSTEM_run(phase, phase_depth, sec_x1, sec_y1, sec_x2, sec_y2);
 }
 
 void SYSTEM_add_velocity(
@@ -264,6 +249,9 @@ void SYSTEM_set_focus(
 
     int focus_x = x / SECTOR_WIDTH;
     int focus_y = y / SECTOR_HEIGHT;
+
+    LVLMAN_set_focus_x(focus_x);
+    LVLMAN_set_focus_y(focus_y);
 }
 
 void SYSTEM_normal_collision(

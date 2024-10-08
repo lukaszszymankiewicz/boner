@@ -7,8 +7,8 @@
 #include "symbols.h"
 
 #define BASE_ROWS    10
-#define MAX_ROWS     2000
-#define HASHMAP_SIZE 4157
+#define MAX_ROWS     4000
+#define HASHMAP_SIZE 999331
 
 int hash(
     int key
@@ -66,8 +66,8 @@ void map_delete(
     int idx = hash(key);
     int i = 0;
 
-    while ((map->entries[idx].fill) && (map->entries[idx].key != key)) {
-        idx = (idx + 1) % map->size;
+    while (map->entries[idx].fill) {
+        idx = (idx + i) % map->size;
 
         if (map->entries[idx].key == key) {
             map->entries[idx].fill = false;
@@ -139,6 +139,7 @@ int* DATATABLE_create(
     return DATATABLE_get_entry(table, key);
 }
 
+// returns 1 if key exist
 int DATATABLE_exist(
     datatable_t* table,
     int          key
@@ -181,23 +182,23 @@ void DATATABLE_del(
     assert(entry != -1);
     assert(entry <= table->rows);
 
-    map_delete(table->map, entry);
-
+    map_delete(table->map, key);
+    
     if (entry == table->rows) {
         free(table->entries[entry]);
         table->entries[entry] = NULL;
-        free(table->entries[entry]);
 
         table->rows--;
+    // TODO: this should append some 'empty' vector with empty indices of
+    // table->entries, not to try some cheat swapping!
     } else {
         // free the requested entry
         free(table->entries[entry]);
         table->entries[entry] = NULL;
 
         // table->entries[entry] = (int*)malloc(sizeof(int)*table->cols);
-        table->entries[entry] = table->entries[table->rows-1];
-
-        table->entries[table->rows-1] = NULL;
+        // table->entries[entry] = table->entries[table->rows-1];
+        // table->entries[table->rows-1] = NULL;
 
         table->rows--;
     }

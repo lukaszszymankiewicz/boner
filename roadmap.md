@@ -54,7 +54,12 @@ version 0.0.2
     highest-left point of frame but it should be modifiable (done by properly
     setting the frame image)
  - [x] skeleton does not stop walking after losing all the x-velocity
- - [ ] segfaults while playing (try jumping four times to achieve this behaviour)
+ - [x] segfaults while playing (try jumping four times to achieve this behaviour)
+  - [x] jumping is ok
+  - [x] failing down sucks
+ - [ ] tweak the hero moving components values
+ - [ ] third platform from left has some collision issues
+ - [ ] remove ent metadata in level
 
 version 0.0.3
  - [ ] behaviours should have its own basic scripting language (rethink it!)
