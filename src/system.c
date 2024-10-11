@@ -9,14 +9,14 @@
 #include "collision.h"
 #include "controller.h"
 #include "datatable.h"
-#include "geometry.h"
 #include "entity.h"
+#include "geometry.h"
 #include "level_manager.h"
-#include "resources.h"
 #include "macros.h"
 #include "modules.h"
-#include "system.h"
+#include "resources.h"
 #include "symbols.h"
+#include "system.h"
 
 // how deep collision checks will be done, 1 means that current entity sector
 // and neigboughs in each direction in distance of 1 sector is checked
@@ -24,16 +24,16 @@
 
 
 void SYSTEM_run(
+    int phase,
+    int depth,
+    int xc,
+    int yc
 ) {
-    int phase_depth = FULL_DEPTH;
 
-    int focus_x = LVLMAN_focus_x();
-    int focus_y = LVLMAN_focus_y();
-
-    int sec_x1 = MAX(0, focus_x - phase_depth);
-    int sec_y1 = MAX(0, focus_y - phase_depth);
-    int sec_x2 = MIN(LVLMAN_size_x(), focus_x + phase_depth + 1);
-    int sec_y2 = MIN(LVLMAN_size_y(), focus_y + phase_depth + 1);
+    int sec_x1 = MAX(0, xc - depth);
+    int sec_y1 = MAX(0, yc - depth);
+    int sec_x2 = MIN(LVLMAN_size_x(), xc + depth + 1);
+    int sec_y2 = MIN(LVLMAN_size_y(), yc + depth + 1);
 
     assert(sec_x1 >= 0); 
     assert(sec_y1 >= 0); 
@@ -43,33 +43,30 @@ void SYSTEM_run(
     assert(sec_x2 > sec_x1);
     assert(sec_y2 > sec_y1);
 
-    assert(phase_depth >=0);
+    assert(depth >=0);
 
+    for (int x=sec_x1; x<sec_x2; x++) { 
+        for (int y=sec_y1; y<sec_y2; y++) { 
 
-    for (int phase=0; phase<PHASE_ALL; phase++) {
-        for (int x=sec_x1; x<sec_x2; x++) { 
-            for (int y=sec_y1; y<sec_y2; y++) { 
-        
-                int n_entities = LVLMAN_n_entities(x, y);
+            int n_entities = LVLMAN_n_entities(x, y);
 
-                for (int i=0; i<n_entities; i++) {
+            for (int i=0; i<n_entities; i++) {
 
-                    int idx    = LVLMAN_entity_idx(x, y, i);
-                    int phases = LVLMAN_get_component(idx, ENTITY_COMPONENT_PHASES);
-                    
-                    // TODO: inline function here?
-                    if (!(phases & (1 << phase))) {
-                        continue;
-                    }
+                int idx    = LVLMAN_entity_idx(x, y, i);
+                int phases = LVLMAN_get_component(idx, ENTITY_COMPONENT_PHASES);
 
-                    int bpt = LVLMAN_get_component(idx, ENTITY_COMPONENT_BPT);
-                    int state = LVLMAN_try_get_component(idx, ENTITY_COMPONENT_STATE, IDLE);
-                    int n_behaviours = ENT_get_n_beh(bpt, state, phase);
+                // TODO: inline function here?
+                if (!(phases & (1 << phase))) {
+                    continue;
+                }
 
-                    for (int n=0; n<n_behaviours; n++) {
-                        int beh = ENT_get_nth_beh(bpt, state, phase, n);
-                        behaviour_library[beh](idx);
-                    }
+                int bpt = LVLMAN_get_component(idx, ENTITY_COMPONENT_BPT);
+                int state = LVLMAN_try_get_component(idx, ENTITY_COMPONENT_STATE, IDLE);
+                int n_behaviours = ENT_get_n_beh(bpt, state, phase);
+
+                for (int n=0; n<n_behaviours; n++) {
+                    int beh = ENT_get_nth_beh(bpt, state, phase, n);
+                    behaviour_library[beh](idx);
                 }
             }
         }
@@ -179,7 +176,7 @@ void SYSTEM_put_to_canvas(
     int txt    = LVLMAN_get_component(ent, ENTITY_COMPONENT_TEXTURE);
     int layer  = LVLMAN_get_component(ent, ENTITY_COMPONENT_LAYER);
     int buffer = LVLMAN_get_component(ent, ENTITY_COMPONENT_BUFFER);
-    
+
     CANVAS_activate_buffer(canvas, buffer);
     CANVAS_activate_layer(canvas, layer);
 
@@ -214,9 +211,10 @@ void SYSTEM_set_camera(
     int buffer = LVLMAN_get_component(ent, ENTITY_COMPONENT_BUFFER);
     int w      = canvas->buffers[buffer]->width;
     int h      = canvas->buffers[buffer]->height;
+    
     int camera_x = LVLMAN_get_component(ent, ENTITY_COMPONENT_X_POS) - (w / 2);
     int camera_y = LVLMAN_get_component(ent, ENTITY_COMPONENT_Y_POS) - (h / 2);
-
+    
     CANVAS_set_camera(canvas, camera_x, camera_y);
 }
 
@@ -231,7 +229,7 @@ void SYSTEM_update_sector(
 
     int new_sec_x = x / SECTOR_WIDTH;
     int new_sec_y = y / SECTOR_HEIGHT;
-    
+
     if ((new_sec_x!=sec_x) || (new_sec_y!=sec_y)) {
         LVLMAN_remove_ent_from_sector(ent);
         LVLMAN_move_ent_to_sector(ent, new_sec_x, new_sec_y);
@@ -246,12 +244,9 @@ void SYSTEM_set_focus(
      
     int sec_x = LVLMAN_get_sector_x(ent);
     int sec_y = LVLMAN_get_sector_y(ent);
-
-    int focus_x = x / SECTOR_WIDTH;
-    int focus_y = y / SECTOR_HEIGHT;
-
-    LVLMAN_set_focus_x(focus_x);
-    LVLMAN_set_focus_y(focus_y);
+    
+    LVLMAN_set_focus_x(sec_x);
+    LVLMAN_set_focus_y(sec_y);
 }
 
 void SYSTEM_normal_collision(
@@ -373,7 +368,7 @@ void SYSTEM_jump(
     }
     int base_jump_power = ENT_base_jump_power(ent);
 
-    ENT_change_state(ent, PREJUMP);
+    LVLMAN_set_component(ent, ENTITY_COMPONENT_STATE_DES, PREJUMP);
     LVLMAN_set_component(ent, ENTITY_COMPONENT_Y_VEL, base_jump_power);
 }
 
@@ -383,7 +378,7 @@ void SYSTEM_check_if_falling(
     int vy = LVLMAN_get_component(ent, ENTITY_COMPONENT_Y_VEL);
 
     if (vy < 0) {
-       ENT_change_state(ent, FALLING_DOWN);
+        LVLMAN_set_component(ent, ENTITY_COMPONENT_STATE_DES, FALLING_DOWN);
     }
 }
 
@@ -393,7 +388,7 @@ void SYSTEM_check_stop_falling(
     int vy = LVLMAN_get_component(ent, ENTITY_COMPONENT_Y_VEL);
 
     if (vy == 0) {
-        ENT_change_state(ent, IDLE);
+        LVLMAN_set_component(ent, ENTITY_COMPONENT_STATE_DES, IDLE);
     }
 }
 
@@ -413,7 +408,7 @@ void SYSTEM_horizontal_air_friction(
     if (xv < 0) {
         new_xv = MIN(0, xv + air_x_friction);
     // right
-    } else {
+    } else if (xv > 0) {
         new_xv = MAX(0, xv - air_x_friction);
     }
 
@@ -437,14 +432,14 @@ void SYSTEM_horizontal_friction(
         new_xv = MIN(0, xv + x_friction);
 
     // right
-    } else {
+    } else if (xv >0) {
         new_xv = MAX(0, xv - x_friction);
     }
     
     if (new_xv == 0) {
-        ENT_change_state(ent, IDLE);
+        LVLMAN_set_component(ent, ENTITY_COMPONENT_STATE_DES, IDLE);
     } else {
-        ENT_change_state(ent, WALKING);
+        LVLMAN_set_component(ent, ENTITY_COMPONENT_STATE_DES, WALKING);
     }
 
     LVLMAN_set_component(ent, ENTITY_COMPONENT_X_VEL, new_xv);
@@ -526,20 +521,21 @@ void SYSTEM_anim_frame(
 void SYSTEM_continue_jump(
     int ent
 ) {
+    int button = CON_button_still_pressed(KEY_PRESSED_SPACE);
+
     int frame  = LVLMAN_get_component(ent, ENTITY_COMPONENT_ANIM_FRAME);
     int timer  = LVLMAN_get_component(ent, ENTITY_COMPONENT_ANIM_TIMER);
     int delay  = LVLMAN_get_component(ent, ENTITY_COMPONENT_ANIM_DELAY);
-    int button = CON_button_still_pressed(KEY_PRESSED_SPACE);
 
     int state = LVLMAN_get_component(ent, ENTITY_COMPONENT_STATE);
 
     assert(state==PREJUMP);
-
+    
     if ((timer < delay) && (button)) {
         int pre_jump_power = ENT_pre_jump_power(ent);
         LVLMAN_add_to_component(ent, ENTITY_COMPONENT_Y_VEL, pre_jump_power);
     } else {
-        ENT_change_state(ent, JUMPING);
+        LVLMAN_set_component(ent, ENTITY_COMPONENT_STATE_DES, JUMPING);
     }
 }
 
@@ -591,6 +587,22 @@ void SYSTEM_block_init(
     LVLMAN_set_component(ent, ENTITY_COMPONENT_PHASES, new_val);
 }
 
+void SYSTEM_catch_state(
+    int ent
+) {
+    LVLMAN_set_component(ent, ENTITY_COMPONENT_STATE_DES, NOT_SET);
+}
+
+void SYSTEM_update_state(
+    int ent
+) {
+    int desired_state = LVLMAN_get_component(ent, ENTITY_COMPONENT_STATE_DES);
+
+    if (desired_state != NOT_SET) {
+        ENT_change_state(ent, desired_state);
+    }
+}
+
 behaviour behaviour_library[BEHAVIOUR_ALL] = {
     SYSTEM_put_to_canvas            ,
     SYSTEM_set_camera              ,
@@ -614,7 +626,9 @@ behaviour behaviour_library[BEHAVIOUR_ALL] = {
     SYSTEM_set_frame               ,
     SYSTEM_set_defaults            ,
     SYSTEM_block_init              ,
-    SYSTEM_update_sector           
+    SYSTEM_update_sector           ,
+    SYSTEM_catch_state             ,
+    SYSTEM_update_state            ,
 };
 
 collision_behaviour collision_behaviour_library[COLLISION_BEHAVIOUR_ALL] = {

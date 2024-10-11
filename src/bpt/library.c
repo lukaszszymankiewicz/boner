@@ -14,12 +14,14 @@ void BPT_serialize(
 
     FILE *f;
 
+    printf("[BLUEPRINT %s write]\n", path);
     f = fopen(path, "wb");
     int written_elems = fwrite(bpt, sizeof(base_int), elems, f);
-    printf("%d rows of data succesfully write to file %s \n", written_elems, path);
+
+    printf("    %d rows of data succesfully written \n", written_elems);
 
     if (written_elems != elems) {
-        printf("write error, rows of data written = %d, to file %s \n", written_elems, path);
+        printf("    write error, rows of data written = %d\n", written_elems);
     }
 
     fclose(f);

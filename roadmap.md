@@ -59,14 +59,17 @@ version 0.0.2
   - [x] failing down sucks
  - [x] third platform from left has some collision issues
  - [ ] tweak the hero moving components values
- - [ ] remove ent metadata in level
 
 version 0.0.3
+ - [ ] cool stuff:
+  - [ ] add clouds and even more crazy level
+  - [ ] add simples enemy
  - [ ] behaviours should have its own basic scripting language (rethink it!)
  - [ ] some easy way to record gameplay (and replay it)
  - [ ] refine hitboxes (guns should propably be out of hitbox of skeleton)
  - [ ] refine components: right now component can hold only one value, but there
    is a place for four of them! (sic!)
+ - [ ] remove ent metadata in level
 
 UTILS:
  - [ ] rethink modules

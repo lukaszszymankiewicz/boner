@@ -322,7 +322,10 @@ void CANVAS_draw_scaled_buffer(
 
     draw_rect_t draw = { x0, y0, w*m, h*m, false, true };
     draw_rect_t clip = { 0, 0, w, h, false, true };
-    
+
+    int old_x = canvas->camera_x;
+    int old_y = canvas->camera_y;
+
     CANVAS_reset_camera(canvas);
 
     CANVAS_put_texture_to_canvas(
@@ -333,6 +336,8 @@ void CANVAS_draw_scaled_buffer(
     );
 
     CANVAS_activate_buffer(canvas, buffer);
+
+    CANVAS_set_camera(canvas, old_x, old_y);
 }
 
 void CANVAS_render_current_layer(
